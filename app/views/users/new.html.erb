@@ -1,0 +1,14 @@
+<h1>Users#new</h1>
+<p>Find me in app/views/users/new.html.erb</p>
+
+<h1>Create a new Account</h1>
+<div class="">
+  <%= form_for @user do |f|%>
+    Complete Name: <%= f.text_field :name %>
+    Age: <%= f.number_field :age %>
+    Username: <%= f.text_field :username %>
+    Password: <%= f.password_field :password %>
+    Password Confirmation: <%= f.password_field :password_confirmation %>
+    <%= f.submit "Create Account" %>
+  <% end %>
+</div>
