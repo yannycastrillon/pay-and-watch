@@ -7,8 +7,9 @@
     Complete Name: <%= f.text_field :name %>
     Age: <%= f.number_field :age %>
     Username: <%= f.text_field :username %>
+    Email: <%= f.email_field :email %>
     Password: <%= f.password_field :password %>
-    Password Confirmation: <%= f.password_field :password_confirmation %>
+    Pass confirm: <%= f.password_field :pass_confirm %>
     <%= f.submit "Create Account" %>
   <% end %>
 </div>

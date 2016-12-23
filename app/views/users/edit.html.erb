@@ -1,0 +1,11 @@
+<h1>Update Account</h1>
+
+<%= form_for @user do |f| %>
+  Complete Name: <%= f.text_field :name%>
+  User Name: <%= f.text_field :username %>
+  Age: <%= f.number_field :age%>
+  Email: <%= f.email_field :email%>
+  Password: <%= f.password_field :password%>
+  Confirmation Passoword: <%= f.password_field :pass_confirm%>
+  <%= f.submit "Update Account" %>
+<%end%>
