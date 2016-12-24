@@ -5,12 +5,17 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
-  <div class="container-fluid">
-    <%= flash.each do |key, value| %>
-      <h2> <%= key + value %> </h2>
-    <% end %>
+  <div class="container-fluid text-center">
+    <div class="row">
+      <%= flash.each do |key, value| %>
+        <div class="<%= flash_class(key) %> fade in" role="alert">
+          <%= value %>
+        </div>
+      <%end%>
+    </div>
     <%= yield %>
   </div>
 

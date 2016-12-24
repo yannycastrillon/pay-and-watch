@@ -1,2 +1,32 @@
 
 <h1>Show User Profile Account</h1>
+<%= link_to "Edit Profile", edit_user_path(@user) %>
+<%= link_to "Delete Profile", users_path, method: :delete %>
+
+<div class="row">
+  <div class="col-xs-5-offset1 profile-header">
+  </div>
+</div>
+
+<!-- Middle section -->
+<div class="row">
+  <div class="col-xs-6">
+    <p><strong> Complete Name: </strong><%= @user.name %> </p>
+    <p><strong> Age: </strong><%= @user.age.to_s %> </p>
+    <p><strong> Username: </strong><%= @user.username %> </p>
+    <p><strong> Email: </strong><%= @user.email %> </p>
+  </div>
+  <div class="col-xs-6">
+  </div>
+</div>
+
+<!-- List of videos -->
+<div class="row">
+  <div class="profile-videos">
+    <h3>List of Videos</h3>
+  </div>
+</div>
+
+<div class="nav navbar">
+
+</div>
