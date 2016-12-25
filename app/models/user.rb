@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many: payments
   has_secure_password
   validates :name, :username,:email, :age, presence: true
   validates :email, :username, uniqueness: true

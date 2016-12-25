@@ -11,26 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161224232919) do
+ActiveRecord::Schema.define(version: 20161225000145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "payments", force: :cascade do |t|
+    t.string   "card_holder_name", null: false
+    t.integer  "card_number",      null: false
+    t.date     "exp_date",         null: false
+    t.integer  "card_sec_code",    null: false
+    t.string   "billing_address"
+    t.string   "city",             null: false
+    t.string   "state_province",   null: false
+    t.integer  "postal_code"
+    t.string   "email_address",    null: false
+
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name",            null: false
     t.string   "username",        null: false
     t.string   "email",           null: false
     t.integer  "age",             null: false
+    t.boolean  "admin"
     t.string   "password_digest"
+    t.string   "pass_confirm",    null: false
+
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.boolean  "admin"
-    t.string   "pass_confirm",    null: false
+
   end
 
   create_table "videos", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
+    
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
