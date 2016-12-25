@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161225000145) do
+ActiveRecord::Schema.define(version: 20161225003534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,31 +26,34 @@ ActiveRecord::Schema.define(version: 20161225000145) do
     t.string   "state_province",   null: false
     t.integer  "postal_code"
     t.string   "email_address",    null: false
-
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "video_id"
+    t.integer  "user_id"
   end
+
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
+  add_index "payments", ["video_id"], name: "index_payments_on_video_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",            null: false
     t.string   "username",        null: false
     t.string   "email",           null: false
     t.integer  "age",             null: false
-    t.boolean  "admin"
     t.string   "password_digest"
-    t.string   "pass_confirm",    null: false
-
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-
+    t.boolean  "admin"
+    t.string   "pass_confirm",    null: false
   end
 
   create_table "videos", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
-    
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "payments", "users"
+  add_foreign_key "payments", "videos"
 end
