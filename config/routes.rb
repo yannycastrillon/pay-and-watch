@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "users#index"
+
   # It will list all users account
   get "/users" => "users#index", as: :users
 
@@ -15,5 +16,9 @@ Rails.application.routes.draw do
 
   # It will delete an account
   delete "/users/:id" => "users#destroy"
+
+  # Resources of sessions
+  delete "/logout" => "sessions#destroy", as: :logout
+  resources :sessions, only: [:new, :create]
 
 end

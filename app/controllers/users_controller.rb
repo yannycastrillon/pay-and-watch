@@ -6,10 +6,11 @@ class UsersController < ApplicationController
 
 
   def show
-    if check_user?(params[:id])
-      @user = User.find(params[:id])
+    # Validates if user is loggedIn to show its details
+    if not current_user
+      redirect_to new_session_path, flash: {alert: "Warning! Please login"}
     else
-      redirect_to users_path, flash: {error: "Error! The user does't exists"}
+      @user = User.find(params[:id])
     end
   end
 
@@ -19,29 +20,35 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  # Saves the @user from the FORM to the DB
   def create
-    @user = User.new(secure_params)
-    if @user.save
-      redirect_to user_path(@user), flash: {success: "Well Done! account created Successfully"}
+    if not current_user
+      redirect_to new_session_path, flash: {alert: "Warning! Please login"}
     else
-      #TODO how to pass validaiton messages from the model to led user know
-      render :new
+      @user = User.new(secure_params)
+      if @user.save
+        redirect_to user_path(@user), flash: {success: "Well Done! account created Successfully"}
+      else
+        #TODO how to pass validaiton messages from the model to led user know
+        render :new
+      end
     end
   end
 
-  # Form to change information from user.
+  # FORM to edit data of a current_user.
   def edit
     # if User doesn't exits on DB. (From Request tries someone to access an id not created yet)
-    if check_user?(params[:id])
-      @user = User.find(params[:id])
+    if not current_user
+      redirect_to root_path, flash: {alert: "Warning! Please login to edit a profile"}
     else
-      redirect_to root_path, flash: {error: "Error! User doesn't exist"}
+      @user = current_user
+      # @user = User.find(params[:id])
     end
   end
 
   def update
     # Look for user on DB from the params Id coming from the EDIT FORM
-    @user = User.find(params[:id])
+    @user = current_user
     # Validates to update @user with the secure_params which comes from the EDIT FORM
     if @user.update_attributes!(secure_params)
       redirect_to user_path(@user), flash: {success: "Account updated Successfully!"}
@@ -60,11 +67,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  # Validates if the current id-user exits.
-  def check_user?(id)
-    User.exists?(id)
-  end
   # It will only permit those parameters to come from the view
   def secure_params
     # If pass_confirm is different from "" otherwise don't send them on secure_params method
