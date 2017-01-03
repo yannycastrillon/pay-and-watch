@@ -1,0 +1,11 @@
+<h1>Videos#index</h1>
+
+<h1>Home Page</h1>
+
+<h2>All Videos availables</h2>
+
+<ul>
+  <% @videos.each do |v|  %>
+    <li>URL: <%= v.url %> --- Price <%= v.price %></li>
+  <%end%>
+</ul>

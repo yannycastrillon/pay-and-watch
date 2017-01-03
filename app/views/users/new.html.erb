@@ -2,14 +2,32 @@
 <p>Find me in app/views/users/new.html.erb</p>
 
 <h1>Create a new Account</h1>
-<div class="">
-  <%= form_for @user do |f|%>
-    Complete Name: <%= f.text_field :name %>
-    Age: <%= f.number_field :age %>
-    Username: <%= f.text_field :username %>
-    Email: <%= f.email_field :email %>
-    Password: <%= f.password_field :password %>
-    Pass confirm: <%= f.password_field :pass_confirm %>
-    <%= f.submit "Create Account" %>
+  <%= form_for @user, html: {class:"form-horizontal"} do |f| %>
+    <div class="form-group">
+      <%= f.label :name, "Name:",class:"col-md-4 control-label" %>
+      <%= f.text_field :name, class:"col-md-6", placeholder:"Full Name" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :age, "Age: ",class:"col-md-4 control-label" %>
+      <%= f.number_field :age, class:"col-md-1", placeholder:"Age" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :username, "Username:",class:"col-md-4 control-label" %>
+      <%= f.text_field :username, class:"col-md-3 ", placeholder:"Username" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :email, "Email:",class:"col-md-4 control-label" %>
+      <%= f.email_field :email , class:"col-md-3 ", placeholder:"Email" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, "Password:",class:"col-md-4 control-label" %>
+      <%= f.password_field :password , class:"col-md-5 ", placeholder:"Password" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation, "Confirmation:",class:"col-md-4 control-label" %>
+      <%= f.password_field :password_confirmation , class:"col-md-5 ", placeholder:"Password Confirmation" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Create Account", class:"col-md-offset-4 col-md-3 btn btn-primary " %>
+    </div>
   <% end %>
-</div>

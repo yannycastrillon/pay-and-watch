@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root "users#index"
+  root "videos#index"
+  resources :videos
 
   # It will list all users account
   get "/users" => "users#index", as: :users

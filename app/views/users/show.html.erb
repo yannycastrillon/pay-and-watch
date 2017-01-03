@@ -20,13 +20,17 @@
   </div>
 </div>
 
-<!-- List of videos -->
+<!-- List videos of each User-->
 <div class="row">
   <div class="profile-videos">
     <h3>List of Videos</h3>
+    <ul>
+        <% @user.videos.each do |v| %>
+          <li> <p> <%= v.name %></p></li>
+          <li> <%= v.url %>  </li>
+          <li> <%= v.price %> </li>
+        <%end%>
+    </ul>
+
   </div>
-</div>
-
-<div class="nav navbar">
-
 </div>

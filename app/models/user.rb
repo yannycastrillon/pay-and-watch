@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
   validates :name, :username,:email, :age, presence: true
   validates :email, :username, uniqueness: true
   validates :age, numericality: {only_integer: true}
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :password, length: { minimum: 6 }, allow_nil: true
 end
