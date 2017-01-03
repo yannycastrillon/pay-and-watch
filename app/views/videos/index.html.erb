@@ -6,6 +6,6 @@
 
 <ul>
   <% @videos.each do |v|  %>
-    <li>URL: <%= v.url %> --- Price <%= v.price %></li>
+    <li>URL: <%= v.url %> --- Price <%= v.price %>  <%= link_to "Buy" %> </li>
   <%end%>
 </ul>
