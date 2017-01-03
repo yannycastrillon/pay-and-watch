@@ -9,8 +9,10 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:email])
     # Validates the existence of that @user and then authenticates with the password from the form.
     if @user and @user.authenticate(params[:password])
-      # Session that holds the @user.id
+      # Assign Session that holds the @user.id
       session[:user_id] = @user.id
+      # Asigns the user's "name" to the Session hash
+      session[:user_name]= @user.name
       flash[:success] = "Success! You are now loggedIn"
       redirect_to user_path(@user)
     else
