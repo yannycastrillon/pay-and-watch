@@ -18,7 +18,7 @@ There are 3 models used on this application
 2. **Payment**: It is the middleware model between users and videos.
 3. **Video**: It is the model that contains the videos.
 
-![](User video payment RoR UML.png)
+![](https://github.com/yannycastrillon/pay-and-watch/blob/master/User%20video%20payment%20RoR%20UML.png)
 
 ##Github Repository
 ######[https://github.com/yannycastrillon/pay-and-watch.git]()
