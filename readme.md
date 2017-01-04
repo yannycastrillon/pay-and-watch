@@ -18,7 +18,7 @@ There are 3 models used on this application
 2. **Payment**: It is the middleware model between users and videos.
 3. **Video**: It is the model that contains the videos.
 
-![](/Users/yannycastrillon/Desktop/User video payment RoR UML.png)
+![](User video payment RoR UML.png)
 
 ##Github Repository
 ######[https://github.com/yannycastrillon/pay-and-watch.git]()
@@ -26,6 +26,7 @@ There are 3 models used on this application
 
 ##Users Stories
 Trello was the application used to plan out and execute each user stories.
+[https://trello.com/b/Z1j4lGem/video-payment-project-ruby-on-rails]()
 Some of them were:
 
  1. **As client I want each user to list all videos that he had payed for.**
