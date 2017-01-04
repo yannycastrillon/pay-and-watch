@@ -13,9 +13,8 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Image icon of the website -->
-        <div class="navbar-header img-fluid">
+        <div class="navbar-header navbar-icon">
           <%= (image_tag "glasses-icon.png", alt:"Watch Videos", title:"See your videos") %>
-
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -49,8 +48,11 @@
         </div>
       <%end%>
     </div>
+    <br><br>
     <%= yield %>
   </div>
+  <br><br><br><br>
+  <!-- Creation of the footer -->
   <footer>
     <div class="footer">
         <div class="container">

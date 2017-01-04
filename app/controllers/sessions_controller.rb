@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
   # Session Id sets to nil
   def destroy
     session[:user_id] = nil
+    session[:user_name] = nil
     redirect_to root_path
   end
 end

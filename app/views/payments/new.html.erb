@@ -1,0 +1,102 @@
+
+<!-- Details of the video is going to pay -->
+<div class="row">
+  <div class="col-xs-offset-3 col-xs-6 panel-group">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h2>Video details</h2>
+      </div>
+      <div class="panel-body text-left">
+        <p><strong>Video Name:</strong> <span class="pull-right"><%= @video.name %></span></p>
+        <p><strong> Video Url:</strong> <span class="pull-right"><%= @video.url %> </span></p>
+        <p><strong> Price: </strong> <span class="pull-right">$ <%= @video.price %> dollars</span> </p>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<div class="row"><legend>PAYMENT SECTION</legend></div>
+<p> Please check your payment detail above</p>
+<br>
+<%= form_for @payment do |f| %>
+  <fieldset>
+    <div class="row">
+      <div class="form-group">
+        <%= label_tag :card_holder_name, "Card Holder Name: ",class:"col-xs-3 control-label" %>
+        <div class="col-xs-4">
+          <%= f.text_field :card_holder_name, placeholder:"Full Name",class:"form-control" %>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="form-group">
+        <%= label_tag :card_number, "Card Number: ", class:"col-xs-3 control-label" %>
+        <div class="col-xs-4">
+          <%= f.number_field :card_number, placeholder:"xxxxxxxxx",class:"form-control" %>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="form-group">
+      <%= label_tag :exp_date, "Expiration Date: ", class:"col-xs-3 control-label" %>
+      <div class="col-xs-4">
+        <%= f.date_field :exp_date,class:"form-control" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag :card_sec_code, "CSC:", class:"col-xs-2 control-label" %>
+        <div class="col-xs-1">
+          <%= f.password_field :card_sec_code, placeholder:"xxx",class:"form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= label_tag :billing_address, "Bill Address: ", class:"col-xs-3 label-control" %>
+      <div class="col-xs-4">
+        <%= f.text_field :billing_address, placeholder:"Full Address",class:"form-control" %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= label_tag :city, "City: ", class:"col-xs-3 label-control" %>
+      <div class="col-xs-4">
+        <%= f.text_field :city, placeholder:"City",class:"form-control" %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= label_tag :state_province, "State/Province: ", class:"col-xs-3" %>
+      <div class="col-xs-4">
+        <%= f.text_field :state_province, placeholder:"State or Province",class:"form-control" %>
+      </div>
+      <%= label_tag :postal_code, "Postal Code: ", class:"col-xs-2" %>
+      <div class="col-xs-2">
+        <%= f.number_field :postal_code, placeholder:"xxxxx", class:"form-control" %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= label_tag :email_address, "Email: ", class:"col-xs-3" %>
+      <div class="col-xs-4">
+        <%= f.text_field :email_address, class:"form-control" %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <%= f.submit "Make Payment", class:"col-xs-offset-5 col-xs-2 btn btn-primary"%>
+  </div>
+  </fieldset>
+  <% f.number_field :video_id, value:params[:v_id] %>
+
+<%end%>
