@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
-  # get 'payments/index' => "payments#index"
-  #
-  # get 'payments/show' => "payments#show"
-  #
-  # get 'payments/new' => "payments#new",as: :new_payment
-  #
-  # post 'payments/create' => "payments#create"
+
 
   root "videos#index"
   resources :videos

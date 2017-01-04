@@ -6,6 +6,7 @@
 
 <ul>
   <% @videos.each do |v|  %>
+    <!-- Sends on the URL the "v_id" which is the id of the video -->
     <li>URL: <%= v.url %> --- Price <%= v.price %>  <%= link_to "Buy", new_payment_path(v_id:v.id) %> </li>
   <%end%>
 </ul>

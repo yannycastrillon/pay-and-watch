@@ -7,9 +7,13 @@ class PaymentsController < ApplicationController
 
   #TODO To buy a video you must login of create an account "Sign in"
   def new
-    # prepopulates form with the current_user's email.
-    @payment = Payment.new(email_address: current_user.email)
-    @video = Video.find(params[:v_id])
+    if not current_user
+      redirect_to new_session_path, flash: {:alert => "Warning! Must be Login to purchase a video!"}
+    else
+      # prepopulates form with the current_user's email.
+      @payment = Payment.new(email_address: current_user.email)
+      @video = Video.find(params[:v_id])
+    end
   end
 
   def create

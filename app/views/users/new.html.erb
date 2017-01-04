@@ -1,32 +1,44 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
 
 <h1>Create a new Account</h1>
+<br><br>
   <%= form_for @user, html: {class:"form-horizontal"} do |f| %>
     <div class="form-group">
       <%= f.label :name, "Name:",class:"col-md-4 control-label" %>
-      <%= f.text_field :name, class:"col-md-6", placeholder:"Full Name" %>
+      <div class="col-md-4">
+        <%= f.text_field :name, class:"col-md-6 form-control", placeholder:"Full Name" %>
+      </div>
     </div>
     <div class="form-group">
       <%= f.label :age, "Age: ",class:"col-md-4 control-label" %>
-      <%= f.number_field :age, class:"col-md-1", placeholder:"Age" %>
+      <div class="col-md-4">
+        <%= f.number_field :age, class:"col-md-1 form-control", placeholder:"Age" %>
+      </div>
     </div>
     <div class="form-group">
       <%= f.label :username, "Username:",class:"col-md-4 control-label" %>
-      <%= f.text_field :username, class:"col-md-3 ", placeholder:"Username" %>
+      <div class="col-md-4">
+        <%= f.text_field :username, class:"col-md-3 form-control", placeholder:"Username" %>
+      </div>
     </div>
     <div class="form-group">
       <%= f.label :email, "Email:",class:"col-md-4 control-label" %>
-      <%= f.email_field :email , class:"col-md-3 ", placeholder:"Email" %>
+      <div class="col-md-4">
+        <%= f.email_field :email , class:"col-md-3 form-control", placeholder:"Email" %>
+      </div>
     </div>
     <div class="form-group">
       <%= f.label :password, "Password:",class:"col-md-4 control-label" %>
-      <%= f.password_field :password , class:"col-md-5 ", placeholder:"Password" %>
+      <div class="col-md-4">
+        <%= f.password_field :password , class:"col-md-5 form-control", placeholder:"Password" %>
+      </div>
     </div>
     <div class="form-group">
       <%= f.label :password_confirmation, "Confirmation:",class:"col-md-4 control-label" %>
-      <%= f.password_field :password_confirmation , class:"col-md-5 ", placeholder:"Password Confirmation" %>
+      <div class="col-md-4">
+        <%= f.password_field :password_confirmation , class:"col-md-5 form-control", placeholder:"Password Confirmation" %>
+      </div>
     </div>
+    <br>
     <div class="form-group">
       <%= f.submit "Create Account", class:"col-md-offset-4 col-md-3 btn btn-primary " %>
     </div>
