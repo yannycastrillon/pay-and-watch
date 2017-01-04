@@ -93,10 +93,10 @@
     </div>
   </div>
   <br>
+  <%= f.hidden_field :video_id, value:params[:v_id] %>
   <div class="row">
     <%= f.submit "Make Payment", class:"col-xs-offset-5 col-xs-2 btn btn-primary"%>
   </div>
   </fieldset>
-  <% f.number_field :video_id, value:params[:v_id] %>
 
 <%end%>

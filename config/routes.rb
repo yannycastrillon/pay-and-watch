@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root "videos#index"
   resources :videos
-  resources :payments
+  resources :payments, only:[:new,:create]
 
   # It will list all users account
   get "/users" => "users#index", as: :users

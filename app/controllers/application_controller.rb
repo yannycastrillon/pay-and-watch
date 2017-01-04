@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     !!@current_user.admin
   end
 
-  # Validates if is not an admin user then redirects to the home page. (root path)
+  # Validates if not an admin user then redirects to the home page. (root path)
   def authorize_admin
     unless isAdmin?
       redirect_to root_path, flash[:error] = "User don't have admin privileges"

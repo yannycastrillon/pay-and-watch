@@ -5,7 +5,6 @@ class PaymentsController < ApplicationController
   def show
   end
 
-  #TODO To buy a video you must login of create an account "Sign in"
   def new
     if not current_user
       redirect_to new_session_path, flash: {:alert => "Warning! Must be Login to purchase a video!"}
@@ -17,8 +16,12 @@ class PaymentsController < ApplicationController
   end
 
   def create
-
-    current_user.payments.create(secure_params)
+    if not current_user
+      redirect_to new_session_path, flash: {:alert => "Warning! Must be Login to save a video!"}
+    else
+      current_user.payments.create(secure_params)
+      redirect_to user_path(current_user)
+    end
   end
 
   private
