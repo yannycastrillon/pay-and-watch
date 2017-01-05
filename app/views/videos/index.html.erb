@@ -1,12 +1,39 @@
-<h1>Videos#index</h1>
 
 <h1>Home Page</h1>
 
-<h2>All Videos availables</h2>
 
-<ul>
-  <% @videos.each do |v|  %>
-    <!-- Sends on the URL the "v_id" which is the id of the video -->
-    <li>URL: <%= v.url %> --- Price <%= v.price %>  <%= link_to "Buy", new_payment_path(v_id:v.id) %> </li>
-  <%end%>
-</ul>
+
+<div class="row font">
+  <div class="panel-group">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h2>Videos Availables</h2>
+      </div>
+      <div class="panel-body">
+        <% @videos.each do |v| %>
+        <div class="row">
+          <div class="col-xs-3 home-video-img">
+          </div>
+          <div class="col-xs-5 description">
+            <button type="button" data-toggle="collapse" data-target="#demo<%=v.id%>" class="btn btn-info">Description</button>
+            <div id="demo<%=v.id%>" class="collapse">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+             <%= link_to "Video", href:v.url %>
+
+            </div>
+          </div>
+          <div class="col-xs-2">
+            <p>PRICE</p>
+            <p> <%= v.price %> </p>
+          </div>
+          <div class="col-xs-2">
+            <%= link_to "Buy", new_payment_path(v_id:v.id) %>
+          </div>
+        </div>
+        <!-- Sends on the URL the "v_id" which is the id of the video -->
+
+        <%end%>
+
+      </div>
+    </div>
+  </div>
+</div>
