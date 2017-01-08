@@ -1,1 +1,31 @@
-<h1>Videos#edit</h1>
+<h1>Edit Video</h1>
+<br>
+<%= form_for @video do |f| %>
+  <div class="form-group">
+    <%= f.label :name, "Title:", class:"col-xs-2 control-label" %>
+    <div class="col-xs-4">
+      <%= f.text_field :name, placeholder:"Video's Title", class:"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :price, "Price", class:"col-xs-2 control-label" %>
+    <div class="col-xs-4">
+      <%= f.number_field :price, placeholder:"$$$", class:"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :url, "Url Path:", class:"col-xs-2 control-label" %>
+    <div class="col-xs-4">
+      <%= f.text_field :url, placeholder:"Video's full url path: www.youtube.com", class:"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, "Description", class:"col-xs-2 control-label" %>
+    <div class="col-xs-4">
+      <%= f.text_area :description, placeholder:"Description of video", class:"form-control" %>
+    </div>
+  </div>
+
+  <%= f.submit "Update Video" , class:"btn btn-primary"%>
+
+<%end%>

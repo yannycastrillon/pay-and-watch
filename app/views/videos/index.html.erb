@@ -1,8 +1,5 @@
 
 <h1>Home Page</h1>
-
-
-
 <div class="row font">
   <div class="panel-group">
     <div class="panel panel-info">
@@ -15,8 +12,9 @@
           <div class="col-xs-3 home-video-img">
           </div>
           <div class="col-xs-5 description">
-            <button type="button" data-toggle="collapse" data-target="#demo<%=v.id%>" class="btn btn-info">Description</button>
-            <div id="demo<%=v.id%>" class="collapse">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+            <button type="button" data-toggle="collapse" data-target="#demo<%=v.id%>" class="btn btn-info"> <%= v.name %> </button>
+            <div id="demo<%=v.id%>" class="collapse">
+              <%= v.description %>
              <%= link_to "Video", href:v.url %>
 
             </div>
@@ -29,6 +27,8 @@
             <%= link_to "Buy", new_payment_path(v_id:v.id) %>
             <%= link_to "Show", video_path(v) %>
             <%= link_to "New",new_video_path %>
+            <%= link_to "Edit",edit_video_path(v) %>
+            <%= link_to "Delete",video_path(v), :confirm => "Are you sure you want to delete?",method: :delete %>
           </div>
         </div>
         <!-- Sends on the URL the "v_id" which is the id of the video -->
