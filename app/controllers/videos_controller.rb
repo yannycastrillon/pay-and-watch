@@ -3,9 +3,9 @@ class VideosController < ApplicationController
   before_action :current_user, :authorize_admin, only: [:new,:create,:edit,:update,:destroy]
 
 
-  # Home page
+  # Home page - All videos that are currently active appear in the home.
   def index
-    @videos = Video.all.order(:id)
+    @videos = Video.where(active:true).order(:id)
   end
 
   # Video description and Information
@@ -47,12 +47,12 @@ class VideosController < ApplicationController
   def destroy
     # @video = Video.destroy
     @video = Video.find(params[:id])
-    unless @video
+    unless @video.update_attributes(active:false)
       validation_error_messages(@video)
       render :show
     else
-      @video.destroy()
-      redirect_to root_path, flash: {success: "Video was successfully deleted!"}
+      # @video.destroy()
+      redirect_to root_path, flash: {success: "Video was successfully inactive!"}
     end
   end
 
