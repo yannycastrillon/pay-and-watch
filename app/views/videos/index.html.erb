@@ -2,11 +2,12 @@
 <h1>Home Page</h1>
 <div class="row container-fluid font">
   <div class="panel-group">
+    <%= link_to "New",new_video_path, class:"pull-right" %>
     <div class="panel panel-info">
       <div class="panel-heading">
         <h2>Videos Availables</h2>
       </div>
-      <div class="panel-body ml-2">
+      <div class="panel-body">
         <% @videos.each do |v| %>
         <div class="row">
           <div class="col-xs-3 home-video-img">
@@ -24,14 +25,13 @@
             <p> <%= v.price %> </p>
           </div>
           <div class="col-xs-2">
+            <!-- Sends on the URL the "v_id" which is the id of the video -->
             <%= link_to "Buy", new_payment_path(v_id:v.id) %>
             <%= link_to "Show", video_path(v) %>
-            <%= link_to "New",new_video_path %>
             <%= link_to "Edit",edit_video_path(v) %>
             <%= link_to "Delete",video_path(v), :confirm => "Are you sure you want to delete?",method: :delete %>
           </div>
         </div>
-        <!-- Sends on the URL the "v_id" which is the id of the video -->
 
         <%end%>
 

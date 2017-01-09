@@ -1,7 +1,16 @@
-
+<!-- If current user is admin -->
+<% if @user.admin %>
+  <div class="row">
+    <ul>
+      <% @requests.each do |r| %>
+      <li> <%= %> </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <!-- Middle section -->
-<div class="row m-y-3 border">
+<div class="row m-t-3 border">
   <div class="col-xs-offset-1 col-xs-5">
     <img class="img-fluid img-circle" src="http://placehold.it/350x150">
   </div>
@@ -12,7 +21,7 @@
     <h4><strong> Email: </strong> </h4>
     <h4><strong> Account:</strong> </h4>
   </div>
-  <div class="col-xs-2 text-left">
+  <div class="col-xs-4 text-left">
     <h4><%= @user.name %></h4>
     <h4><%= @user.age.to_s %></h4>
     <h4><%= @user.username %></h4>
@@ -21,11 +30,11 @@
   </div>
 </div>
 <div class="row">
-  <%= link_to "Edit Profile", edit_user_path(@user), class:"col-xs-offset-3 pull-left", style:"margin-left: 245px;" %>
+  <%= link_to "Edit Profile", edit_user_path(@user), class:"col-xs-offset-3 pull-left", style:"margin-left: 255px;" %>
 </div>
 <hr>
 <!-- List videos of each User-->
-<div class="row m-y-2">
+<div class="row m-y-2 text-warning">
   <h2>List of Videos</h2>
 </div>
 <div class="row">
