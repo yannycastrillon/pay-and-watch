@@ -1,36 +1,60 @@
-
-<h1>Show User Profile Account</h1>
-<%= link_to "Edit Profile", edit_user_path(@user) %>
-<%= link_to "Logout", logout_path, method: "delete" %>
-
-<div class="row">
-  <div class="col-xs-5-offset1 profile-header">
+<!-- If current user is admin -->
+<% if @user.admin %>
+  <div class="row">
+    <ul>
+      <% @requests.each do |r| %>
+      <li> <%= %> </li>
+      <% end %>
+    </ul>
   </div>
-</div>
+<% end %>
 
 <!-- Middle section -->
-<div class="row">
-  <div class="col-xs-offset-4 col-xs-6">
-    <p><strong> Complete Name: </strong><%= @user.name %> </p>
-    <p><strong> Age: </strong><%= @user.age.to_s %> </p>
-    <p><strong> Username: </strong><%= @user.username %> </p>
-    <p><strong> Email: </strong><%= @user.email %> </p>
+<div class="row m-t-3 border">
+  <div class="col-xs-offset-1 col-xs-5">
+    <img class="img-fluid img-circle" src="http://placehold.it/350x150">
   </div>
-  <div class="col-xs-6">
+  <div class="col-xs-2 text-left">
+    <h4><strong> Full Name: </strong> </h4>
+    <h4><strong> Age: </strong> </h4>
+    <h4><strong> Username: </strong> </h4>
+    <h4><strong> Email: </strong> </h4>
+    <h4><strong> Account:</strong> </h4>
+  </div>
+  <div class="col-xs-4 text-left">
+    <h4><%= @user.name %></h4>
+    <h4><%= @user.age.to_s %></h4>
+    <h4><%= @user.username %></h4>
+    <h4><%= @user.email %></h4>
+    <h4><%= @user.active ? "Active" : "Inactive"%></h4>
   </div>
 </div>
-
-<!-- List videos of each User-->
 <div class="row">
-  <div class="profile-videos">
-    <h3>List of Videos</h3>
-    <ul>
-        <% @user.videos.each do |v| %>
-          <li> <p> <%= v.name %></p></li>
-          <li> <%= v.url %>  </li>
-          <li> <%= v.price %> </li>
-        <%end%>
-    </ul>
-
+  <%= link_to "Edit Profile", edit_user_path(@user), class:"col-xs-offset-3 pull-left", style:"margin-left: 255px;" %>
+</div>
+<hr>
+<!-- List videos of each User-->
+<div class="row m-y-2 text-warning">
+  <h2>List of Videos</h2>
+</div>
+<div class="row">
+  <% @user.videos.each do |v| %>
+  <div class="col-md-6 col-lg-4">
+    <div class="card">
+      <img class="card-img-top img-fluid" src="http://placehold.it/350x150">
+      <div class="card-block">
+        <div class="card-title"> <%= v.name %> - <%= v.active %> </div>
+        <button type="button" data-toggle="collapse" data-target="#demo<%=v.id%>" class="btn btn-info"> Description </button>
+        <div id="demo<%=v.id%>" class="collapse">
+          <%= v.description %>
+          <%= link_to "Video", href:v.url %>
+        </div>
+          <%= v.active ? "<div class='text-success'>Active</div>".html_safe : "<div class='text-danger'>Inactive</div>".html_safe%>
+      </div>
+      <div class="card-footer text-muted">
+        Cost: $<%= v.price %>0
+      </div>
+    </div>
   </div>
+ <%end%>
 </div>

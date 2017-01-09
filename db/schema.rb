@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170103021754) do
+ActiveRecord::Schema.define(version: 20170108032443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,14 +44,17 @@ ActiveRecord::Schema.define(version: 20170103021754) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.boolean  "admin"
+    t.boolean  "active"
   end
 
   create_table "videos", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.float    "price"
+    t.text     "description"
+    t.boolean  "active"
   end
 
   add_foreign_key "payments", "users"

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
+  # User current active
   def index
-    @users = User.all
+    @users = User.where(active:true).order(:id)
   end
 
 

@@ -1,25 +1,31 @@
-<h1>Videos#new</h1>
-
-<h1>Form to Create Videos</h1>
-
+<h1>New Videos</h1>
+<br>
 <%= form_for @video do |f| %>
   <div class="form-group">
-    <label for="Title">Title/Name</label>
-    <input type="email" class="form-control"  placeholder="Title">
+    <%= f.label :name, "Title:", class:"col-xs-2 control-label" %>
+    <div class="col-xs-4">
+      <%= f.text_field :name, placeholder:"Video's Title", class:"form-control" %>
+    </div>
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" placeholder="Password">
+    <%= f.label :price, "Price", class:"col-xs-2 control-label" %>
+    <div class="col-xs-4">
+      <%= f.number_field :price, placeholder:"$$$", class:"form-control" %>
+    </div>
   </div>
   <div class="form-group">
-    <label for="exampleInputFile">File input</label>
-    <input type="file" id="exampleInputFile">
-    <p class="help-block">Example block-level help text here.</p>
+    <%= f.label :url, "Url Path:", class:"col-xs-2 control-label" %>
+    <div class="col-xs-4">
+      <%= f.text_field :url, placeholder:"Video's full url path: www.youtube.com", class:"form-control" %>
+    </div>
   </div>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox"> Check me out
-    </label>
+  <div class="form-group">
+    <%= f.label :description, "Description", class:"col-xs-2 control-label" %>
+    <div class="col-xs-4">
+      <%= f.text_area :description, placeholder:"Description of video", class:"form-control" %>
+    </div>
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+
+  <%= f.submit "Create Video" , class:"btn btn-primary"%>
+
 <%end%>
