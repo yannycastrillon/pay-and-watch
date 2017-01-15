@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  date: 2017-01-12
+  state_id: 
+  state: MyString
+  description: MyString
+  belongs_to: 
+
+two:
+  type: 
+  date: 2017-01-12
+  state_id: 
+  state: MyString
+  description: MyString
+  belongs_to: 

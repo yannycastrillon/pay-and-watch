@@ -1,11 +1,7 @@
 <!-- If current user is admin -->
 <% if @user.admin %>
   <div class="row">
-    <ul>
-      <% @requests.each do |r| %>
-      <li> <%= %> </li>
-      <% end %>
-    </ul>
+
   </div>
 <% end %>
 
@@ -31,6 +27,7 @@
 </div>
 <div class="row">
   <%= link_to "Edit Profile", edit_user_path(@user), class:"col-xs-offset-3 pull-left", style:"margin-left: 255px;" %>
+  <%= link_to "Inactive account", new_user_request_path(@user), data: {confirm: "Are you sure?", method:"POST"} %>
 </div>
 <hr>
 <!-- List videos of each User-->

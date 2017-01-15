@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :payments
   has_many :videos, through: :payments
+  has_many :requests
   has_secure_password
   validates :name, :username,:email, :age, presence: true
   validates :email, :username, uniqueness: true

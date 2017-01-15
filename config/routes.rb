@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
-
   root "videos#index"
-  resources :videos
+  resources :videos do
+    resources :requests
+  end
   resources :payments, only:[:new,:create]
 
+#Users###################################################
   # It will list all users account
   get "/users" => "users#index", as: :users
 
@@ -20,7 +22,14 @@ Rails.application.routes.draw do
 
   # It will delete an account
   delete "/users/:id" => "users#destroy"
+#############################################################
+#requests######################################################
 
+  get "/users/:user_id/requests/:id" => "requests#show"
+  patch "/users/:user_id/requests/:id" => "requests#update", as: :update_user_request
+  post "/users/:user_id/requests/new" => "requests#create", as: :new_user_request
+
+############################################################
   # Resources of sessions
   delete "/logout" => "sessions#destroy", as: :logout
   resources :sessions, only: [:new, :create]
