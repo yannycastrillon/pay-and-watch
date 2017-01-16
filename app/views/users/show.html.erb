@@ -1,11 +1,50 @@
 <!-- If current user is admin -->
 <% if @user.admin %>
-  <div class="row">
+  <div class="row container-fluid">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2>Pending Requests</h2>
+      </div>
 
+        <table class="table table-condensed table-hover sans-serif">
+          <tr class="warning">
+            <td><strong>Request Type</strong></td>
+            <td><strong>Id Who Requested</strong></td>
+            <td><strong>Request status</strong></td>
+            <td><strong>Description</strong></td>
+            <td><strong>Current state</strong></td>
+            <td><strong>Change state to</strong></td>
+            <td><strong>Action</strong></td>
+          </tr>
+          <% @requests.each do |r| %>
+          <tr>
+            <td><%=r.req_type%></td>
+            <td><%=r.user_id%></td>
+            <td class="text-warning"><%=r.req_st_desc%></td>
+            <td class="text-muted"><%=r.description%></td>
+            <td class="text-success"><%=r.acc_curr_st_id == 1 ? "Active" : "Inactive"%></td>
+            <td class="text-danger"><%=r.acc_chgTo_st_id == 3 ? "Inactive" : "Active"%></td>
+            <td> <%= button_to "Approve", update_user_request_path(
+            user_id:r.user_id,
+            request:{
+              req_id:r.id,
+              curr_st:r.acc_curr_st_id,
+              chg_to:r.acc_chgTo_st_id
+            }), method: :patch, class:"btn btn-primary"  %>
+          </td>
+          </tr>
+          <%end%>
+        </table>
+
+    </div>
   </div>
+  <br>
 <% end %>
 
 <!-- Middle section -->
+<div class="row">
+  <h2>Profile Details</h2>
+</div>
 <div class="row m-t-3 border">
   <div class="col-xs-offset-1 col-xs-5">
     <img class="img-fluid img-circle" src="http://placehold.it/350x150">
@@ -27,7 +66,7 @@
 </div>
 <div class="row">
   <%= link_to "Edit Profile", edit_user_path(@user), class:"col-xs-offset-3 pull-left", style:"margin-left: 255px;" %>
-  <%= link_to "Inactive account", new_user_request_path(@user), data: {confirm: "Are you sure?", method:"POST"} %>
+  <%= link_to "Inactive account", new_user_request_path(@user, acc_chgTo_st:3, user_active:@user.active), data: {confirm: "Are you sure?", method:"POST"} %>
 </div>
 <hr>
 <!-- List videos of each User-->

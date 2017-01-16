@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115081857) do
+ActiveRecord::Schema.define(version: 20170115191539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,14 +36,17 @@ ActiveRecord::Schema.define(version: 20170115081857) do
   add_index "payments", ["video_id"], name: "index_payments_on_video_id", using: :btree
 
   create_table "requests", force: :cascade do |t|
-    t.string   "request_type", null: false
-    t.date     "date",         null: false
-    t.integer  "state_id",     null: false
-    t.string   "state",        null: false
+    t.string   "req_type",        null: false
+    t.date     "date",            null: false
+    t.integer  "req_st_id",       null: false
+    t.string   "req_st_desc",     null: false
     t.string   "description"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "user_id"
+    t.integer  "acc_curr_st_id"
+    t.integer  "acc_chgTo_st_id"
+    t.integer  "acc_old_st_id"
   end
 
   add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree

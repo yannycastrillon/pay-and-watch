@@ -25,9 +25,10 @@ Rails.application.routes.draw do
 #############################################################
 #requests######################################################
 
-  get "/users/:user_id/requests/:id" => "requests#show"
+  # get "/users/:user_id/requests/:id" => "requests#show"
+  get   "/users/:user_id/requests" => "requests#index"
   patch "/users/:user_id/requests/:id" => "requests#update", as: :update_user_request
-  post "/users/:user_id/requests/new" => "requests#create", as: :new_user_request
+  post  "/users/:user_id/requests/new" => "requests#create", as: :new_user_request
 
 ############################################################
   # Resources of sessions

@@ -12,7 +12,10 @@ class UsersController < ApplicationController
       redirect_to new_session_path, flash: {alert: "Warning! Please login"}
     else
       @user = current_user
-      # @user = User.find(params[:id])
+      if isAdmin?
+        # Retrieves all pending requests
+        @requests = Request.where(req_st_id: 2)
+      end
     end
   end
 
