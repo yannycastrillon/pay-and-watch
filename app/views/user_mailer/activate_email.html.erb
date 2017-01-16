@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Activate account</title>
+  </head>
+  <body>
+    <h1>Welcome to Pay-and-Watch, <%= @user.name %></h1>
+    <h3>We recieved a request to activate your account from: </h3>
+    <h3>your username: <%= @user.username%>.<br>
+        your email is: <%= @user.email %>.<br>
+        your Age: <%= @user.age %>.
+    </h3>
+    <h4> It will be activated! </h4>
+    <p>
+      To login to the site, just follow this link: <%= @url %>.
+    </p>
+    <p>Thank you for letting us be part of your entertaiment!</p>
+    <p>Have a great day!</p>
+
+    <p><em><small>Best Regards</small></em></p>
+    <p><em><small>Admin</small></em></p>
+  </body>
+</html>

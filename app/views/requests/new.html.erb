@@ -1,0 +1,26 @@
+<div class="row m-b-3">
+  <h2>Contact Information</h2>
+</div>
+
+<%= form_for [@user, @request], url: :create_user_request  do |f| %>
+  <input type="hidden" name="user_active" value="<%= @user.active %>">
+  <div class="row">
+    <div class="col-xs-offset-4 col-xs-4">
+      <%= text_field_tag :name, @user.name, class:"form-control", placeholder:"name" %>
+    </div>
+  </div>
+  <div class="row m-y-1">
+    <div class="col-xs-offset-4 col-xs-4">
+      <%= text_field_tag :email, @user.email, class:"form-control", placeholder:"Email" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-offset-4 col-xs-4">
+      <%= f.text_area :description, class:"form-control", placeholder:"Description", rows:"5",columns:"40" , value:"I want to active my account once again! Thank you"%>
+    </div>
+  </div>
+  <div class="row m-t-3">
+    <!-- This button will send the email with the form information -->
+    <%= f.submit "Activate Account", class:"btn btn-primary col-md-offset-4 col-md-3" %>
+  </div>
+<% end %>
