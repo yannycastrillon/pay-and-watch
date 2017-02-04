@@ -16,7 +16,7 @@
             <td><strong>Change state to</strong></td>
             <td><strong>Action</strong></td>
           </tr>
-          <% @requests.each do |r| %>
+          <% @user.requests.each do |r| %>
           <tr>
             <td><%=r.req_type%></td>
             <td><%=r.user_id%></td>
@@ -24,12 +24,13 @@
             <td class="text-muted"><%=r.description%></td>
             <td class="text-success"><%=r.acc_curr_st_id == 1 ? "Active" : "Inactive"%></td>
             <td class="text-danger"><%=r.acc_chgTo_st_id == 3 ? "Inactive" : "Active"%></td>
+            <!-- Sends a PATCH request with data on params to update and approve request -->
             <td> <%= button_to "Approve", update_user_request_path(
             user_id:r.user_id,
             request:{
-              req_id:r.id,
-              curr_st:r.acc_curr_st_id,
-              chg_to:r.acc_chgTo_st_id
+              req_id:r.id, # actual request id
+              curr_st:r.acc_curr_st_id, # current state account
+              chg_to:r.acc_chgTo_st_id # change state to account
             }), method: :patch, class:"btn btn-primary"  %>
           </td>
           </tr>
@@ -66,7 +67,7 @@
 </div>
 <div class="row">
   <%= link_to "Edit Profile", edit_user_path(@user), class:"col-xs-offset-3 pull-left", style:"margin-left: 255px;" %>
-  <%= link_to "Inactive account", new_user_request_path(@user, acc_chgTo_st:3, user_active:@user.active), data: {confirm: "Are you sure?", method:"POST"} %>
+  <%= link_to "Inactive account", users_requests_path(@user, acc_chgTo_st:3, user_active:@user.active), data: {confirm: "Are you sure?", method:"POST"} %>
 </div>
 <hr>
 <!-- List videos of each User-->

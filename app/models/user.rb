@@ -7,4 +7,11 @@ class User < ActiveRecord::Base
   validates :email, :username, uniqueness: true
   validates :age, numericality: {only_integer: true}
   validates :password, length: { minimum: 6 }, allow_nil: true
+
+  # Get all pending requests from an admin user
+  def requests
+    if self.admin
+      Request.where(req_st_id: 2)
+    end
+  end
 end

@@ -9,8 +9,25 @@ class RequestsController < ApplicationController
 
   end
 
+  def new
+      # Create a new request (1 -> activate account)
+      # if params[:type] == 1
+      #   @user = User.find(params[:user_id])
+      #   @request = @user.requests.where(acc_curr_st_id:3).first
+      #   @request.req_type = "Act Account"
+      #   @request.date = Time.now
+      #   @request.req_st_id = 2 # Pending state
+      #   @request.req_st_desc = "Pending"
+      #   @request.description = "Activate this account"
+      #   @request.acc_curr_st_id = 3 # Current state is inactive
+      #   @request.acc_chgTo_st_id= 1 # Change state to active
+      #   redirect_to users_requests(@request), method: "POST"
+      # end
+  end
+
   # Creates an actual request for admin user to
   def create
+    asdf
     @request = Request.new
     # account change id to ...
     @request.acc_chgTo_st_id = params[:acc_chgTo_st]
@@ -29,7 +46,7 @@ class RequestsController < ApplicationController
     end
   end
 
-  # updates requests 
+  # updates requests
   def update
     @request = Request.find(params[:request][:req_id])
     @request.acc_old_st_id = params[:request][:curr_st]

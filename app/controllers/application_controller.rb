@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
 
   # Validates if current_user has admin privileges
   def isAdmin?
+
     unless logged_in?
       redirect_to new_session_path, flash: {:error => "Warning! Only Admin privileges"}
     else

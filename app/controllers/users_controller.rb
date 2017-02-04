@@ -5,17 +5,12 @@ class UsersController < ApplicationController
     @users = User.where(active:true).order(:id)
   end
 
-
   def show
     # Validates if user is loggedIn to show its details
     if not current_user
       redirect_to new_session_path, flash: {alert: "Warning! Please login"}
     else
       @user = current_user
-      if isAdmin?
-        # Retrieves all pending requests
-        @requests = Request.where(req_st_id: 2)
-      end
     end
   end
 
@@ -31,7 +26,7 @@ class UsersController < ApplicationController
       if @user.save
         redirect_to user_path(@user), flash: {success: "Well Done! account created Successfully"}
       else
-        # Validates text field errors and builds up the html to show on the page
+        # Validates textfields errors and builds up the html to show on the page
         validation_error_messages(@user)
         render :new
       end
