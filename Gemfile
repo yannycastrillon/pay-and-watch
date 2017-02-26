@@ -1,10 +1,16 @@
 source 'https://rubygems.org'
-
-gem 'rails_12factor'
 ruby '2.3.1'
 
-gem 'wannabe_bool'
 
+
+# Javascript library that allows to integrate Stripe payments with our own forms.
+gem 'stripe'
+# Setting project-specific environment vars
+gem 'dotenv-rails'
+# Use to be able to deploy to heroku the app
+gem 'rails_12factor'
+# Converts a string value into a boolean value. (true or false)
+gem 'wannabe_bool'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record

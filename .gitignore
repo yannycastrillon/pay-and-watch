@@ -11,3 +11,5 @@
 /log/*
 !/log/.keep
 /tmp
+# Ignore the environment variables
+.env
