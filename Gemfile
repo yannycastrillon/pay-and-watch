@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.3.1'
 
-
-
+# Haml is a templating engine for HTML.
+gem 'haml', '~> 4.0.5'
 # Javascript library that allows to integrate Stripe payments with our own forms.
 gem 'stripe'
 # Setting project-specific environment vars

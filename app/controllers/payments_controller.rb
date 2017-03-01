@@ -10,7 +10,7 @@ class PaymentsController < ApplicationController
       redirect_to new_session_path, flash: {:alert => "Warning! Must be Login to purchase a video!"}
     else
       # prepopulates form with the current_user's email.
-      @payment = Payment.new(email_address: current_user.email)
+      @payment = Payment.new(email: current_user.email)
       @video = Video.find(params[:v_id])
     end
   end
@@ -19,7 +19,14 @@ class PaymentsController < ApplicationController
     if not current_user
       redirect_to new_session_path, flash: {:alert => "Warning! Must be Login to save a video!"}
     else
-      current_user.payments.create(secure_params)
+
+      # stripe_card_token, exp_month, exp_year,
+      @payment = Payment.new secure_params
+      @payment.user_id = current_user.id
+      
+      @payment.save_with_payment
+      # asdfasf
+      # current_user.payments.create(secure_params)
       redirect_to user_path(current_user)
     end
   end
@@ -27,7 +34,7 @@ class PaymentsController < ApplicationController
   private
 
   def secure_params
-    params.require(:payment).permit(:card_holder_name, :card_number, :exp_date,:card_sec_code,
-                                    :billing_address,:city,:state_province,:postal_code, :email_address,:video_id)
+    params.require(:payment).permit(:card_holder_name, :card_sec_code, :address, :city, :state_province, :postal_code, :email, :video_id, :stripe_card_token, :exp_month, :exp_year)
   end
+
 end

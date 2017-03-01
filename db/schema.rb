@@ -11,25 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115191539) do
+ActiveRecord::Schema.define(version: 20170301014102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "payments", force: :cascade do |t|
-    t.string   "card_holder_name", null: false
-    t.integer  "card_number",      null: false
-    t.date     "exp_date",         null: false
-    t.integer  "card_sec_code",    null: false
-    t.string   "billing_address"
-    t.string   "city",             null: false
-    t.string   "state_province",   null: false
+    t.string   "card_holder_name",      null: false
+    t.string   "address"
+    t.string   "city",                  null: false
+    t.string   "state_province",        null: false
     t.integer  "postal_code"
-    t.string   "email_address",    null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "video_id"
-    t.integer  "user_id"
+    t.string   "email",                 null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "video_id",              null: false
+    t.integer  "user_id",               null: false
+    t.string   "stripe_customer_token"
   end
 
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree

@@ -1,4 +1,7 @@
 
+
+
+
 <!-- Details of the video is going to pay -->
 <div class="row">
   <div class="col-xs-offset-3 col-xs-6 panel-group">
@@ -23,36 +26,40 @@
       </div>
       <div class="panel-body">
         <br>
-        <%= form_for @payment do |f| %>
+        <%= form_for @payment, html: {id: :card_details} do |f| %>
           <fieldset>
             <div class="row">
               <div class="form-group">
-                <%= label_tag :card_holder_name, "Card Holder Name: ",class:"col-xs-3 control-label" %>
+                <%= label_tag :card_holder_name, "Card Holder Name: ", class:"col-xs-3 control-label " %>
                 <div class="col-xs-4">
-                  <%= f.text_field :card_holder_name, placeholder:"Full Name",class:"form-control" %>
+                  <%= f.text_field :card_holder_name, placeholder:"Full Name", class:"form-control" %>
                 </div>
               </div>
             </div>
             <br>
             <div class="row">
               <div class="form-group">
-                <%= label_tag :card_number, "Card Number: ", class:"col-xs-3 control-label" %>
+                <%= label_tag :card_number, "Card Number: ",
+                class:"col-xs-3 control-label" %>
                 <div class="col-xs-4">
-                  <%= f.number_field :card_number, placeholder:"xxxxxxxxx",class:"form-control" %>
+                  <%= text_field_tag :card_number,"", {placeholder:"xxxxxxxxx", class:"form-control ", "data-stripe"=>"number"} %>
                 </div>
               </div>
             </div>
             <br>
             <div class="row">
               <div class="form-group">
-              <%= label_tag :exp_date, "Expiration Date: ", class:"col-xs-3 control-label" %>
-              <div class="col-xs-4">
-                <%= f.date_field :exp_date,class:"form-control" %>
-              </div>
-              <div class="form-group">
-                <%= label_tag :card_sec_code, "CSC:", class:"col-xs-2 control-label" %>
-                <div class="col-xs-1">
-                  <%= f.password_field :card_sec_code, placeholder:"xxx",class:"form-control" %>
+                <%= label_tag :card_expires, "card expires",{class:"col-xs-3 control-label"} %>
+                <div class="col-xs-2">
+                  <%= select_tag :exp_month, options_for_select( Date::MONTHNAMES
+                  .compact.each_with_index.map {|name, i| ["#{i+1} - #{name}", i+1]} ), name:nil ,"data-stripe" => "exp-month" %>
+                </div>
+                <div class="col-xs-2">
+                  <%= select_tag :exp_year, options_for_select((Date.today.year..(Date.today.year+10)).to_a), name:nil, "data-stripe"=>"exp-year" %>
+                </div>
+                <%= label_tag :card_sec_code,"CVV:",{class:"col-xs-2 control-label"} %>
+                <div class="col-xs-2">
+                  <%= text_field_tag :card_sec_code,"",{placeholder:"xxx", name:nil, class:"form-control", "data-stripe"=>"cvv"} %>
                 </div>
               </div>
             </div>
@@ -60,9 +67,9 @@
           <br>
           <div class="row">
             <div class="form-group">
-              <%= label_tag :billing_address, "Bill Address: ", class:"col-xs-3 label-control" %>
+              <%= label_tag :address, "Bill Address: ", class:"col-xs-3 label-control" %>
               <div class="col-xs-4">
-                <%= f.text_field :billing_address, placeholder:"Full Address",class:"form-control" %>
+                <%= f.text_field :address, placeholder:"Full Address",class:"form-control" %>
               </div>
             </div>
           </div>
@@ -91,16 +98,23 @@
           <br>
           <div class="row">
             <div class="form-group">
-              <%= label_tag :email_address, "Email: ", class:"col-xs-3" %>
+              <%= label_tag :email, "Email: ", class:"col-xs-3" %>
               <div class="col-xs-4">
-                <%= f.text_field :email_address, class:"form-control" %>
+                <%= f.text_field :email, class:"form-control" %>
               </div>
             </div>
           </div>
           <br>
           <%= f.hidden_field :video_id, value:params[:v_id] %>
+          <%= f.hidden_field :stripe_card_token, id:"payment_stripe_card_token"  %>
+
           <div class="row">
-            <%= f.submit "Make Payment", class:"col-xs-offset-5 col-xs-2 btn btn-primary"%>
+            <div id="stripe_error">
+              <noscript>Javascript is no enable and is required for this form. First enable it in your web browser settings.</noscript>
+            </div>
+          </div>
+          <div class="row">
+            <%= f.submit "Make Payment", class:"col-xs-offset-5 col-xs-2 btn btn-primary m-b-2"%>
           </div>
           </fieldset>
         <%end%>
@@ -108,3 +122,52 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+
+  var $form = $("#card_details");
+
+  // Your publishable API key identifies your website to Stripe during communications. Including Stripe.js and before making any requests to Stripe.
+  Stripe.setPublishableKey("<%= ENV['TEST_PUBLISHABLE_KEY']%>")
+
+  setupform()
+  function setupform () {
+    $form.submit(function(event) {
+      // event.preventDefault()
+      $(this).find("input[type=submit]").prop("disabled", true);
+      processCard();
+      return false;
+    });
+  }
+
+  function processCard () {
+    var card = {
+      number:  $("[data-stripe=number]").val(),
+      csc:     $("[data-stripe=cvv]").val(),
+      expMont: $("[data-stripe=exp-month]").val(),
+      expYear: $("[data-stripe=exp-year]").val()
+    }
+    console.log(card);
+    Stripe.card.createToken($form, handleStripeResponse);
+  }
+
+  function handleStripeResponse (status, response) {
+    console.log("Handle Stripe Response");
+    var token;
+    if (status == 200) {
+      token = response.id
+      alert(token)
+      // Assign token value to the hidden field of the form
+      $("#payment_stripe_card_token").val(token)
+      $form[0].submit();
+    }
+    else {
+      token = response.id
+      console.log(response);
+      console.log("Status != 200");
+      $("#stripe_error").text(response.error.message)
+      $("input[type=submit]").attr("disabled",false)
+    }
+  }
+
+</script>
