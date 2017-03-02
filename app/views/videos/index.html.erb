@@ -1,12 +1,9 @@
 
-<h1>Home Page</h1>
 <div class="row container-fluid font">
   <div class="panel-group">
     <%= link_to "New",new_video_path, class:"pull-right" %>
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h2>Videos Availables</h2>
-      </div>
+    <div class="panel-default" style="background-color:none;">
+        <h1 style="margin-top:1.5em; margin-bottom:1.5em;">Videos Availables</h1>
       <div class="panel-body">
         <% @videos.each do |v| %>
         <div class="row">

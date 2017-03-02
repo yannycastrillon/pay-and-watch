@@ -14,7 +14,19 @@
  *= require_self
  */
 
-  .navbar-icon img{
+html{
+  background-color: rgb(0,38,51);
+}
+
+
+.container-fluid{
+  background: url("https://keep.google.com/media/1oMUucflIZzdzNBWXuFqkpvTTD9-Ipf8?accept=image/gif,image/jpeg,image/jpg,image/png,image/webp,audio/aac&sz=w1233-h675") no-repeat center center fixed;
+  background-color: rgb(0,38,51);
+
+}
+
+
+.navbar-icon img{
    border-radius: 50%;
    width: 50px;
    height: 50px;
@@ -65,4 +77,22 @@
  }
  #social-em:hover {
      color: #f39c12;
+ }
+ h1, h2{
+   color: honeydew;
+ }
+ body > div > nav > div > div.collapse.navbar-collapse > ul.nav.navbar-nav.navbar-right > li.navbar-text{
+   color:white;
+ }
+ body > div > nav > div > div.collapse.navbar-collapse > ul:nth-child(1) > li > a{
+   color:white;
+ }
+ body > div > nav > div > div.collapse.navbar-collapse > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a{
+   color:white;
+ }
+ body > div > nav > div > div.collapse.navbar-collapse > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a{
+   color:white;
+ }
+ div .nav li a{
+   color:white;
  }

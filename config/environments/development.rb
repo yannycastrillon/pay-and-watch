@@ -19,11 +19,12 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port:587,
-    domain:"example.com",
-    authentication: :plain,
+    domain:"gmail.com",
+    authentication: "plain",
     enable_starttls_auto:true,
-    user_name: ENV["user_name"],
-    password: ENV["pwd"]
+    :openssl_verify_mode => 'none',
+    user_name: "yannyandres117@gmail.com", #ENV["user_name"],
+    password: "airforcef22"#ENV["pwd"]
   }
   config.action_mailer.default_url_options = {host:"localhost:3000"}
 

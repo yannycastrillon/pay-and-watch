@@ -1,6 +1,7 @@
-
-<h1>Welcome and create your Account</h1>
-<br><br>
+<div class="row">
+  <h1 style="margin-top:1.5em;">Create Account</h1>
+</div>
+<br>
   <%= form_for @user, html: {class:"form-horizontal"} do |f| %>
     <div class="form-group">
       <%= f.label :name, "Name:",class:"col-md-4 control-label" %>
@@ -40,6 +41,6 @@
     </div>
     <br>
     <div class="form-group">
-      <%= f.submit "Create Account", class:"col-md-offset-4 col-md-3 btn btn-primary " %>
+      <%= f.submit "Create Account",class:"col-md-offset-4 col-md-3 btn btn-primary" %>
     </div>
   <% end %>

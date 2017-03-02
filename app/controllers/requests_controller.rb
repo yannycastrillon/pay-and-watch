@@ -61,8 +61,8 @@ class RequestsController < ApplicationController
     request.req_st_id = 2 # defaults to 2 (pending)
     request.req_st_desc = "Pending"
     request.description = "#{session[:user_name]} requested to inactive the account"
-
-    if current_user.requests.create(request.attributes)
+    request.user_id = current_user.id
+    if Request.create(request.attributes)
       redirect_to user_path(params[:user_id]), flash:{notice:"Request Created Succesfully!"}
     else
       redirect_to user_path(params[:user_id], flash:{error: "There was an error, creating request"})
