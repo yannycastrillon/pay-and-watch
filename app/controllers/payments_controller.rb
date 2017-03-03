@@ -23,11 +23,11 @@ class PaymentsController < ApplicationController
       # stripe_card_token, exp_month, exp_year,
       @payment = Payment.new secure_params
       @payment.user_id = current_user.id
-      
+
       @payment.save_with_payment
       # asdfasf
       # current_user.payments.create(secure_params)
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user), flash: {:success => "Payment successfuly recieve! Envoy your new purchase"}
     end
   end
 

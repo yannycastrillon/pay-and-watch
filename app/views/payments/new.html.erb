@@ -122,7 +122,6 @@
     </div>
   </div>
 </div>
-
 <script type="text/javascript">
 
   var $form = $("#card_details");
@@ -166,7 +165,7 @@
       console.log(response);
       console.log("Status != 200");
       $("#stripe_error").text(response.error.message)
-      $("input[type=submit]").attr("disabled",false)
+      $form.find("input[type=submit]").prop("disabled",false)
     }
   }
 

@@ -14,7 +14,7 @@ class Payment < ActiveRecord::Base
           # validate payment already has a customer_token
           if payment_db.stripe_customer_token.present?
             # Retrieves existing customer Stripe
-            @customer = Stripe::Customer.retrieve(self.stripe_customer_token)
+            @customer = Stripe::Customer.retrieve(payment_db.stripe_customer_token)
           else
             self.create_stripe_customer
           end
@@ -22,6 +22,7 @@ class Payment < ActiveRecord::Base
           self.create_stripe_customer
         end
         self.charge_stripe_customer
+        save!
       end
     end
   end
@@ -30,7 +31,6 @@ class Payment < ActiveRecord::Base
   def create_stripe_customer
     @customer = Stripe::Customer.create(description: email,card: stripe_card_token)
     self.stripe_customer_token = @customer.id
-    save!
   end
 
   # Charge amount to stripe customer
