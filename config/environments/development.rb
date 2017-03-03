@@ -23,8 +23,8 @@ Rails.application.configure do
     authentication: "plain",
     enable_starttls_auto:true,
     :openssl_verify_mode => 'none',
-    user_name: "yannyandres117@gmail.com", #ENV["user_name"],
-    password: "airforcef22"#ENV["pwd"]
+    user_name: ENV["user_name"],
+    password: ENV["pwd"]
   }
   config.action_mailer.default_url_options = {host:"localhost:3000"}
 

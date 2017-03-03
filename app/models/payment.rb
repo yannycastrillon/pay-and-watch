@@ -10,22 +10,35 @@ class Payment < ActiveRecord::Base
     if valid?
       ActiveRecord::Base.transaction do
         payment_db = Payment.find_by_email(self.email)
-        # validate if payment already has a customer_token
-        if payment_db.stripe_customer_token.present?
-          # Retrieves existing customer Stripe
-          customer = Stripe::Customer.retrieve(self.stripe_customer_token)
+        if payment_db != nil
+          # validate payment already has a customer_token
+          if payment_db.stripe_customer_token.present?
+            # Retrieves existing customer Stripe
+            @customer = Stripe::Customer.retrieve(self.stripe_customer_token)
+          else
+            self.create_stripe_customer
+          end
         else
-          # Creates a new Customer on my Stripe account
-          customer = Stripe::Customer.create(description: email,card: stripe_card_token)
-          self.stripe_customer_token = customer.id
-          save!
+          self.create_stripe_customer
         end
-        video_amount = Video.find(self.video_id).price
-        Stripe::Charge.create customer: customer.id,
-                            amount: (video_amount * 100).round,
-                            description: "First Payment",
-                            currency: 'usd'
+        self.charge_stripe_customer
       end
     end
+  end
+
+  # Creates a new Customer on my Stripe account
+  def create_stripe_customer
+    @customer = Stripe::Customer.create(description: email,card: stripe_card_token)
+    self.stripe_customer_token = @customer.id
+    save!
+  end
+
+  # Charge amount to stripe customer
+  def charge_stripe_customer
+    video_amount = Video.find(self.video_id).price
+    Stripe::Charge.create customer: @customer.id,
+                          amount: (video_amount * 100).round,
+                          description: "First Payment",
+                          currency: 'usd'
   end
 end
