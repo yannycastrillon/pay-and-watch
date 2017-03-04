@@ -40,5 +40,5 @@ class Payment < ActiveRecord::Base
                           amount: (video_amount * 100).round,
                           description: "First Payment",
                           currency: 'usd'
-  end
+  end  
 end
