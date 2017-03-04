@@ -26,6 +26,6 @@ class Payment < ActiveRecord::Base
                             description: "First Payment",
                             currency: 'usd'
       end
-    end
+    end   
   end
 end
