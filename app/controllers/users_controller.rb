@@ -2,7 +2,8 @@ class UsersController < ApplicationController
 
   # User current active
   def index
-    @users = User.where(active:true).order(:id)
+    # @users = User.where(active:true).order(:id)
+    @users = User.actives.order_by_id
   end
 
   def show

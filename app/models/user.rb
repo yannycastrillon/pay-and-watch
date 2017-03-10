@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   # set_default will only work if the object is new
   after_initialize :set_defaults , unless: :persisted?
 
+  scope :actives,     ->{where(active:true)}
+  scope :order_by_id, ->{order(:id)}
+
   # Get all pending requests from an admin user
   def requests
     if self.admin
