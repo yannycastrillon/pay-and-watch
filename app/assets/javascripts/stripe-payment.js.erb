@@ -1,0 +1,42 @@
+$(document).ready(()=>{
+
+  var $form = $("#card_details");
+
+  // Your publishable API key identifies your website to Stripe during communications. Including Stripe.js and before making any requests to Stripe.
+
+  Stripe.setPublishableKey("<%= ENV['TEST_PUBLISHABLE_KEY'] %>")
+
+  setupform()
+  function setupform () {
+    $form.submit(function(event) {
+      alert("submited form")
+      event.preventDefault()
+      $(this).find("input[type=submit]").prop("disabled", true);
+      processCard();
+      return false;
+    });
+  }
+
+  function processCard () {
+    Stripe.card.createToken($form, handleStripeResponse);
+  }
+
+  function handleStripeResponse (status, response) {
+    console.log("Handle Stripe Response");
+    var token;
+    if (status == 200) {
+      token = response.id
+      alert(token)
+      // Assign token value to the hidden field of the form
+      $("#payment_stripe_card_token").val(token)
+      $form[0].submit();
+    }
+    else {
+      token = response.id
+      console.log(response);
+      console.log("Status != 200");
+      $("#stripe_error").text(response.error.message)
+      $form.find("input[type=submit]").prop("disabled",false)
+    }
+  }
+})

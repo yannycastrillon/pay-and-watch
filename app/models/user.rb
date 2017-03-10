@@ -8,10 +8,18 @@ class User < ActiveRecord::Base
   validates :age, numericality: {only_integer: true}
   validates :password, length: { minimum: 6 }, allow_nil: true
 
+  # set_default will only work if the object is new
+  after_initialize :set_defaults , unless: :persisted?
+
   # Get all pending requests from an admin user
   def requests
     if self.admin
       Request.where(req_st_id: 2)
     end
+  end
+
+  # Set default values when user gets created for the first time
+  def set_defaults
+    self.active = "t" if self.active.nil?
   end
 end
