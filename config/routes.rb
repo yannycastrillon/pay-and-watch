@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   root "videos#index"
+  get "/videos/inactives" => "videos#inactive_videos"
   resources :videos do
+    get :activate, :on => :member
     resources :requests
   end
   resources :payments, only:[:new,:create]

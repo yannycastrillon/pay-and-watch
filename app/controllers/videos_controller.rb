@@ -1,7 +1,7 @@
 class VideosController < ApplicationController
   # This is like the middleware which gets executed before any action of the controller
-  before_action :current_user, :authorize_admin, only: [:new,:create,:edit,:update,:destroy]
-  before_action :set_video, except: [:index,:new,:create]
+  before_action :current_user, :authorize_admin, only: [:new,:create,:edit,:update,:destroy,:inactive_videos]
+  before_action :set_video, except: [:index,:new,:create,:inactive_videos,:activate]
 
 
   # Home page - All videos that are currently active appear in the home.
@@ -20,6 +20,7 @@ class VideosController < ApplicationController
   # Video creation on DB
   def create
     @video = Video.new(secure_params_video)
+    @video.set_defaults
     if @video.save
       redirect_to root_path, flash: {success: "Video was created Successfully!"}
     else
@@ -42,14 +43,26 @@ class VideosController < ApplicationController
     end
   end
 
+  # It inactivates a video
   def destroy
-    unless @video.update_attributes(active:false)
+    if @video.update_attributes(active:false)
+      redirect_to root_path, flash: {success: "Video was successfully inactive!"}
+    else
       validation_error_messages(@video)
       render :show
-    else
-      # @video.destroy()
-      redirect_to root_path, flash: {success: "Video was successfully inactive!"}
     end
+  end
+
+  # List all the inactive videos
+  def inactive_videos
+    @inactive_videos = Video.inactives.order_by_id
+    render partial: "inactive_videos"
+  end
+
+  # Activates video
+  def activate
+    msg = Video.find(params[:id]).activate_video
+    redirect_to root_path, flash:msg
   end
 
   private

@@ -1,12 +1,13 @@
 
 <div class="row container-fluid font">
   <div class="panel-group">
+    <%= link_to "Inactive Videos", videos_inactives_path %>
     <%= link_to "New",new_video_path, class:"pull-right" %>
     <div class="panel-default" style="background-color:none;">
         <h1 style="margin-top:1.5em; margin-bottom:1.5em;">Videos Availables</h1>
       <div class="panel-body">
         <% @videos.each do |v| %>
-        <div class="row">
+          <div class="row">
           <div class="col-xs-3 home-video-img">
           </div>
           <div class="col-xs-5 description">
@@ -26,10 +27,9 @@
             <%= link_to "Buy", new_payment_path(v_id:v.id) %>
             <%= link_to "Show", video_path(v) %>
             <%= link_to "Edit",edit_video_path(v) %>
-            <%= link_to "Delete",video_path(v), :confirm => "Are you sure you want to delete?",method: :delete %>
+            <%= link_to "Inactivate",video_path(v), :confirm => "Are you sure you want to delete?",method: :delete %>
           </div>
         </div>
-
         <%end%>
 
       </div>

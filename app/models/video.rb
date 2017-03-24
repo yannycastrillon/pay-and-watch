@@ -5,5 +5,20 @@ class Video < ActiveRecord::Base
   validates :price, numericality: true
 
   scope :actives,     ->{where(active:true)}
+  scope :inactives,   ->{where(active:false)}
   scope :order_by_id, ->{order(:id)}
+
+
+  def set_defaults
+    self.active = false if self.active.nil?
+  end
+
+  def activate_video
+    self.active = true
+    if self.save
+      {success: "Video was successfully activate!"}
+    else
+      {error: "Video was not able to be activate!"}
+    end
+  end
 end
