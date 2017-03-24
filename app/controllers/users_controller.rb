@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   # Saves the @user from the FORM to the DB
   def create
       @user = User.new(secure_params)
+      @user.set_defaults
       if @user.save
         redirect_to user_path(@user), flash: {success: "Well Done! account created Successfully"}
       else
@@ -81,6 +82,5 @@ class UsersController < ApplicationController
   def secure_params
     # If pass_confirm is different from "" otherwise don't send them on secure_params method
       params.require(:user).permit(:name,:email,:age,:username,:password,:password_confirmation)
-      # (:pass_confirm unless params[:user][:pass_confirm].chomp == "")
   end
 end
