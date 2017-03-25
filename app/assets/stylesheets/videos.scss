@@ -2,12 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+p{
+    color: #8BC34A;
+}
+
+
+.admin-home-options{
+  background: #eee;
+  border-radius: 25px;
+  height: 175px;
+  padding:0.5em;
+  margin-right: 15px;
+  border: thin solid;
+  a{
+    font-size: 14px;
+    color: #aaa;
+  }
+}
 .panel-body{
-  // p, .control-label{
-  //   color:navajowhite;
-  //   font-size: 14px;
-  //   font-family: sans-serif;
-  // }
   .row{
     margin-bottom: 25px;
   }

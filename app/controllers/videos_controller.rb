@@ -3,10 +3,11 @@ class VideosController < ApplicationController
   before_action :current_user, :authorize_admin, only: [:new,:create,:edit,:update,:destroy,:inactive_videos]
   before_action :set_video, except: [:index,:new,:create,:inactive_videos,:activate]
 
+  @@VIDEOS_PER_PAGE = 6
 
   # Home page - All videos that are currently active appear in the home.
   def index
-    @videos = Video.actives.order_by_id
+    @videos = Video.actives.order_by_id.paginate(page:params[:page], :per_page => @@VIDEOS_PER_PAGE)
   end
 
   # Video description and Information

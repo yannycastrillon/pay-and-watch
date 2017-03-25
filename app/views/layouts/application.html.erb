@@ -30,7 +30,8 @@
               <li><%= (link_to "Sign up", new_user_path)  %></li>
               <li><%= (link_to "Login", new_session_path) %></li>
             <%else%>
-              <li class="navbar-text ">Signed in as <strong><em> <%=session[:user_name]%></em></strong></li>
+              <li class="navbar-text" style="font-size:12px;">Signed in as <strong><em>
+                <%= link_to session[:user_name], user_path(current_user), {style:"font-size:18px; color:cian;"}%></em></strong></li>
               <li><%= (link_to "Logout", logout_path, method: "delete")%></li>
             <%end%>
           </ul>
