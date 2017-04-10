@@ -7,23 +7,18 @@ class Payment < ActiveRecord::Base
 
   # process payment with Stripe
   def save_with_payment
-    if valid?
-      ActiveRecord::Base.transaction do
-        payment_db = Payment.find_by_email(self.email)
-        if payment_db != nil
-          # validate payment already has a customer_token
-          if payment_db.stripe_customer_token.present?
-            # Retrieves existing customer Stripe
-            @customer = Stripe::Customer.retrieve(payment_db.stripe_customer_token)
-          else
-            self.create_stripe_customer
-          end
-        else
-          self.create_stripe_customer
-        end
-        self.charge_stripe_customer
-        save!
+    return unless valid?
+    ActiveRecord::Base.transaction do
+      payment_db = Payment.find_by_email(self.email)
+      # validate payment already has a customer_token
+      # Retrieves existing customer Stripe
+      if payment_db != nil && payment_db.stripe_customer_token.present?
+        @customer = Stripe::Customer.retrieve(payment_db.stripe_customer_token)
+      else
+        self.create_stripe_customer
       end
+      self.charge_stripe_customer
+      save!
     end
   end
 
@@ -40,5 +35,5 @@ class Payment < ActiveRecord::Base
                           amount: (video_amount * 100).round,
                           description: "First Payment",
                           currency: 'usd'
-  end  
+  end
 end

@@ -46,7 +46,7 @@ class VideosController < ApplicationController
 
   # It inactivates a video
   def destroy
-    if @video.update_attributes(active:false)
+    if @video.update_attributes(active: false)
       redirect_to root_path, flash: {success: "Video was successfully inactive!"}
     else
       validation_error_messages(@video)
@@ -63,18 +63,18 @@ class VideosController < ApplicationController
   # Activates video
   def activate
     msg = Video.find(params[:id]).activate_video
-    redirect_to root_path, flash:msg
+    redirect_to root_path, flash: msg
   end
 
-  private
+
 
   # Sets video for actions show, edit, update, destroy
-  def set_video
+  private def set_video
     @video = Video.find(params[:id])
   end
 
   # Validates input-fields messages
-  def validation_error_messages(video)
+  private def validation_error_messages(video)
     if video.errors.any?
       errors = "<ul>"
       video.errors.full_messages.each do |message|
@@ -86,7 +86,7 @@ class VideosController < ApplicationController
   end
 
   # Passing of secure params from the website.
-  def secure_params_video
+  private def secure_params_video
     params.require(:video).permit(:name,:url,:price,:description)
   end
 end

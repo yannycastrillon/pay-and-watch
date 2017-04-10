@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.3.1'
 
+gem 'rubocop', '~> 0.48.0'
+
 gem 'will_paginate'
 # Haml is a templating engine for HTML.
 gem 'haml', '~> 4.0.5'
