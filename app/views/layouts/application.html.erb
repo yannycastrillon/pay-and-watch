@@ -3,42 +3,49 @@
 <head>
   <title>PayAndWatch</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag "https://js.stripe.com/v2/",'application', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'https://js.stripe.com/v2/','application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
 
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" ></script>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
-  <div class="container-fluid text-center">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <!-- Image icon of the website -->
-        <div class="navbar-header navbar-icon">
-          <%= (image_tag "glasses-icon.png", alt:"Watch Videos", title:"See your videos") %>
-        </div>
+  <div class="container-fluid">
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <%= link_to "Pay-Watch", root_path, class:"navbar-brand mr-4" %>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li> <%= link_to "Home", root_path, class:"active" %></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <%if session[:user_id] == nil %>
-              <li><%= (link_to "Sign up", new_user_path)  %></li>
-              <li><%= (link_to "Login", new_session_path) %></li>
-            <%else%>
-              <li class="navbar-text" style="font-size:12px;">Signed in as <strong><em>
-                <%= link_to session[:user_name], user_path(current_user), {style:"font-size:18px; color:cian;"}%></em></strong></li>
-              <li><%= (link_to "Logout", logout_path, method: "delete")%></li>
-            <%end%>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <%= link_to "Home", root_path, class:"navbar-text mt-2" %>
+          </li>
+        </ul>
+
+        <%if session[:user_id] == nil %>
+          <%= (link_to "Sign up", new_user_path, class:"navbar-text")  %>
+          <%= (link_to "Login", new_session_path, class:"navbar-text mx-4") %>
+        <%else%>
+          <li class="navbar-text">Signed in as <strong><em>
+          <%= (link_to session[:user_name], user_path(current_user), class:"nav-item")%></em></strong></li>
+          <%= (link_to "Logout", logout_path, method: "delete", class:"navbar-text mx-4 ") %>
+        <% end %>
+      </div>
     </nav>
-    <!-- Shows the actual flash messages on the website -->
+
+    <nav class="navbar navbar-default">
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse">
+
+      </div><!-- /.navbar-collapse --></nav>
+
+
+    <!-- flash messages -->
     <div class="row">
       <% flash.each do |key, value| %>
         <div class="<%= flash_class(key) %> fade in" role="alert">
@@ -46,25 +53,21 @@
         </div>
       <%end%>
     </div>
-    <br>
-    <%= yield %>
 
-    <br><br>
-  <!-- Creation of the footer -->
+    <%= yield %>
+    <!-- footer -->
     <footer>
       <div class="footer">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="pull-center">
+              <h4>Social Media</h4>
+            </div>
+          </div><!--/.row-->
           <div class="container">
-              <div class="row">
-                <br>
-                <div class="pull-center">
-                  <h4>Social Media</h4>
-                </div>
-              </div><!--/.row-->
-              <div class="container">
-                <p class="text-center"> Copyright © powered by Yanny Castrillon 2017. All right reserved. </p>
-                <br>
-              </div>
-          </div><!--/.container-->
+            <p class="text-center"> Copyright © powered by Yanny Castrillon 2017. All right reserved. </p>
+          </div>
+        </div><!--/.container-->
       </div><!--/.footer-->
     </footer>
   </div>
