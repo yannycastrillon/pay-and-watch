@@ -6,6 +6,8 @@
   <%= javascript_include_tag 'https://js.stripe.com/v2/','application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
 
+  <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
@@ -17,32 +19,44 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <%= link_to "Pay-Watch", root_path, class:"navbar-brand mr-4" %>
+      <%= link_to " Pay-Watch", root_path, class:"navbar-brand mr-4 fa fa-eye" %>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <%= link_to "Home", root_path, class:"navbar-text mt-2" %>
+            <i class="fa fa-home" aria-hidden="true"></i>
+            <%= link_to "Home", root_path, class:"navbar-text " %>
           </li>
         </ul>
 
         <%if session[:user_id] == nil %>
-          <%= (link_to "Sign up", new_user_path, class:"navbar-text")  %>
-          <%= (link_to "Login", new_session_path, class:"navbar-text mx-4") %>
+          <li>
+            <i class="fa fa-sign-in" id="basic-addon1"></i>
+            <%= (link_to "Sign up", new_user_path, class:"navbar-text mr-4")  %>
+          </li>
+          <li>
+            <i class="fa fa-user" id="basic-addon1"></i>
+            <%= (link_to "Login", new_session_path, class:"navbar-text mr-4") %>
+          </li>
         <%else%>
-          <li class="navbar-text">Signed in as <strong><em>
-          <%= (link_to session[:user_name], user_path(current_user), class:"nav-item")%></em></strong></li>
-          <%= (link_to "Logout", logout_path, method: "delete", class:"navbar-text mx-4 ") %>
+          <li class="navbar-text mr-4">Signed in as <strong><em>
+            <%= (link_to session[:user_name], user_path(current_user), class:"nav-item")%></em></strong></li>
+          <li> <i class="fa fa-sign-out" aria-hidden="true"></i>
+            <%= (link_to "Logout", logout_path, method: "delete", class:"navbar-text mr-4")%>
+          </li>
         <% end %>
       </div>
     </nav>
-
-    <nav class="navbar navbar-default">
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse">
-
-      </div><!-- /.navbar-collapse --></nav>
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+      <h1 class="display-3">WELCOME TO PAY AND WATCH</h1>
+      <p class="lead">Here you will find all videos you been looking for; watch any video and entertain yourself with all we have to offer.</p>
+      <hr class="my-4">
+      <p>You guy can even be part of our website by sign-in and login to be able to buy a video from our Home Page!</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+      </p>
+    </div> <!-- End Jumbotron -->
 
 
     <!-- flash messages -->
