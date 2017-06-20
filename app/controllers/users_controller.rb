@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       else
         # Validates textfields errors and builds up the html to show on the page
         validation_error_messages(@user)
-        render :new
+        redirect_to new_user_path
       end
     # end
   end
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     else
       # Validates text field errors and builds up the html to show on the page
       validation_error_messages(@user)
-      render :new
+      redirect_to new_user_path
     end
   end
 

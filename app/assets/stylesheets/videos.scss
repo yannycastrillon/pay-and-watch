@@ -1,39 +1,17 @@
-// Place all the styles related to the videos controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 
+.login-component{
+  width: 350px;
+  height: auto;
+  padding: 1em;
+  margin: 0 auto;
+  border:1px solid red;
 
-p{
-    color: #8BC34A;
-}
-
-
-.admin-home-options{
-  background: #eee;
-  border-radius: 25px;
-  height: 175px;
-  padding:0.5em;
-  margin-right: 15px;
-  border: thin solid;
-  a{
-    font-size: 14px;
-    color: #aaa;
+  input[class="form-control"] {
+    color:#7B7B7B;
   }
-}
-.panel-body{
-  .row{
-    margin-bottom: 25px;
+  h2 {
+    font-size: 2em;
+    font-family: sans-serif;
+    color: #7B7B7B;
   }
-}
-
-.row{
-  h1{
-    color: honeydew;
-  }
-  .description{
-    .collapse{
-      color:white;
-    }
-  }
-
 }

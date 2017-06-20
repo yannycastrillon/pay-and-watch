@@ -14,76 +14,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" ></script>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
-  <div class="container-fluid">
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <%= link_to " Pay-Watch", root_path, class:"navbar-brand mr-4 fa fa-eye" %>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <i class="fa fa-home" aria-hidden="true"></i>
-            <%= link_to "Home", root_path, class:"navbar-text " %>
-          </li>
-        </ul>
-
-        <%if session[:user_id] == nil %>
-          <li>
-            <i class="fa fa-sign-in" id="basic-addon1"></i>
-            <%= (link_to "Sign up", new_user_path, class:"navbar-text mr-4")  %>
-          </li>
-          <li>
-            <i class="fa fa-user" id="basic-addon1"></i>
-            <%= (link_to "Login", new_session_path, class:"navbar-text mr-4") %>
-          </li>
-        <%else%>
-          <li class="navbar-text mr-4">Signed in as <strong><em>
-            <%= (link_to session[:user_name], user_path(current_user), class:"nav-item")%></em></strong></li>
-          <li> <i class="fa fa-sign-out" aria-hidden="true"></i>
-            <%= (link_to "Logout", logout_path, method: "delete", class:"navbar-text mr-4")%>
-          </li>
-        <% end %>
-      </div>
-    </nav>
-    <!-- Jumbotron -->
-    <div class="jumbotron">
-      <h1 class="display-3">WELCOME TO PAY AND WATCH</h1>
-      <p class="lead">Here you will find all videos you been looking for; watch any video and entertain yourself with all we have to offer.</p>
-      <hr class="my-4">
-      <p>You guy can even be part of our website by sign-in and login to be able to buy a video from our Home Page!</p>
-      <p class="lead">
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-      </p>
-    </div> <!-- End Jumbotron -->
-
-
-    <!-- flash messages -->
-    <div class="row">
-      <% flash.each do |key, value| %>
-        <div class="<%= flash_class(key) %> fade in" role="alert">
-          <%= value.html_safe %>
-        </div>
-      <%end%>
-    </div>
-
-    <%= yield %>
-    <!-- footer -->
-    <footer>
-      <div class="footer">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="pull-center">
-              <h4>Social Media</h4>
-            </div>
-          </div><!--/.row-->
-          <div class="container">
-            <p class="text-center"> Copyright © powered by Yanny Castrillon 2017. All right reserved. </p>
-          </div>
-        </div><!--/.container-->
-      </div><!--/.footer-->
-    </footer>
-  </div>
+  <%= render 'layouts/navbar' %>
+  <%= render 'layouts/flash_messages' %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+  <% debug(params) if Rails.env.development? %>
 </body>
 </html>

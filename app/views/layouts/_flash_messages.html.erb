@@ -1,0 +1,9 @@
+<div class="flash-component">  
+  <div class="row">
+    <% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %> mx-auto" role="alert">
+        <%= value.html_safe %>
+      </div>
+    <%end%>
+  </div>
+</div>

@@ -14,25 +14,21 @@
  *= require_self
  */
 
-/*html{
-  background-color: rgb(0,38,51);
-}*/
-
-/*h1, h2{
-  color: honeydew;
-}*/
-
-
-/*.container-fluid{
+/*
+  .container-fluid{
   background: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.8)), url("https://keep.google.com/media/1oMUucflIZzdzNBWXuFqkpvTTD9-Ipf8?accept=image/gif,image/jpeg,image/jpg,image/png,image/webp,audio/aac&sz=w1233-h675") no-repeat center center fixed;
   background-color: #f4f4f4;
 
 }*/
 
+
+
 #navbarSupportedContent li{
   list-style-type: none;
 }
-
+nav {
+    height: 80px;
+}
 .navbar-icon img{
    border-radius: 50%;
    width: 50px;
@@ -60,8 +56,6 @@
  }
  .social {
      -webkit-transform: scale(0.8);
-     /* Browser Variations: */
-
      -moz-transform: scale(0.8);
      -o-transform: scale(0.8);
      -webkit-transition-duration: 0.5s;
@@ -85,19 +79,16 @@
  #social-em:hover {
      color: #f39c12;
  }*/
+.login-component {
+  
+}
 
- /*body > div > nav > div > div.collapse.navbar-collapse > ul.nav.navbar-nav.navbar-right > li.navbar-text{
-   color:white;
- }
- body > div > nav > div > div.collapse.navbar-collapse > ul:nth-child(1) > li > a{
-   color:white;
- }
- body > div > nav > div > div.collapse.navbar-collapse > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a{
-   color:white;
- }
- body > div > nav > div > div.collapse.navbar-collapse > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a{
-   color:white;
- }
- div .nav li a{
-   color:white;
- }*/
+.footer {
+  bottom: 0;
+  height: 2em;
+  width: 100%;
+  left: 0;
+  /*line-height: 60px;*/
+  position: relative;
+  background-color: #f5f5f5;
+}
