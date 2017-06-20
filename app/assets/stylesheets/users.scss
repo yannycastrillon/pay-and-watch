@@ -1,1 +1,28 @@
+@import "config";
 
+.sigin-component {
+  width: 350px;
+  height: auto;
+  padding: 2em 3em;
+  margin: 2em auto;
+  background: $GRAY_BG_COMPONENT;
+  border: thin gray dashed;
+  text-align: center;
+
+  label {
+    color: #D7D8D8;
+    font-size: 1em;
+    font-family: $FONT_LABEL_FORM;
+  }
+
+  h2 {
+    margin-bottom: 1em;
+    font-family: sans-serif;
+    color: $GRAY_H2;
+  }
+
+  input[class="form-control"] {
+    font-style: $FONT_LABEL_FORM;
+  }
+
+}

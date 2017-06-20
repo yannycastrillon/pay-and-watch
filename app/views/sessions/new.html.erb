@@ -1,7 +1,6 @@
 <div class="login-component">
   <h2>Login</h2>
-  <br>
-  <%= form_tag sessions_path  do %>
+  <%= form_tag sessions_path do %>
     <div class="form-group" >
       <%= text_field_tag :email, params[:email], class:"form-control" %>
     </div>

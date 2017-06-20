@@ -1,17 +1,20 @@
+@import "config";
 
 .login-component{
+  background: $GRAY_BG_COMPONENT;
   width: 350px;
   height: auto;
-  padding: 1em;
-  margin: 0 auto;
-  border:1px solid red;
+  padding: 2em 1em;
+  margin: 2em auto;
+  border: thin gray dashed;
 
   input[class="form-control"] {
     color:#7B7B7B;
   }
+
   h2 {
+    color: $GRAY_H2;
     font-size: 2em;
     font-family: sans-serif;
-    color: #7B7B7B;
   }
 }

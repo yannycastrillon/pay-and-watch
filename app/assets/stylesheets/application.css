@@ -28,6 +28,7 @@
 }
 nav {
     height: 80px;
+    background-color: #D7D8D8
 }
 .navbar-icon img{
    border-radius: 50%;
@@ -41,10 +42,10 @@ nav {
    border-radius: 20px;
  }*/
 
- .font{
+ .font {
    font-family: sans-serif;
  }
- .home-video-img{
+ .home-video-img {
    background-image: url("http://placehold.it/350x150");
    background-size: contain;
    height: 150px;
@@ -79,9 +80,6 @@ nav {
  #social-em:hover {
      color: #f39c12;
  }*/
-.login-component {
-  
-}
 
 .footer {
   bottom: 0;
