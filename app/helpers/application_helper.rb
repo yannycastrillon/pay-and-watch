@@ -9,4 +9,9 @@ module ApplicationHelper
       when :alert then "alert alert-warning"
     end
   end
+
+  # Be able to use this method as helper on the views.
+  def is_admin?
+    !!current_user.admin
+  end
 end

@@ -1,0 +1,52 @@
+.nabvar-component {
+  .drop-menu {
+    padding: 0px;
+    margin: 0px;
+    list-style-type:none;
+    display: table;
+    z-index: 3000px;
+    display: table-cell;
+    vertical-align: middle;
+    float: right;
+    ul {
+      position:absolute;
+    	left:-9999px;
+    	top:-9999px;
+    	list-style-type:none;
+    }
+    li:hover {
+      position:relative;
+      background:#5FD367;
+      ul{
+        left:0px;
+      	top:30px;
+      	background:#5FD367;
+      	padding:0px;
+        li a {
+          padding:5px;
+          display:block;
+          width:168px;
+          text-indent:15px;
+          background-color:#5FD367;
+        }
+        li a:hover {
+          background:#005555; 
+        }
+      }
+    }
+    li {
+      display: table-cell;
+      vertical-align: middle;
+      float:left;
+      a {
+        padding:9px 20px;
+        display:block;
+        color:#666;
+        text-decoration:none;
+        font-size: 15px;
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

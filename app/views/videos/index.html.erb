@@ -1,20 +1,12 @@
-
-<div class="row container-fluid font">
+<div class="main-component">
   <div class="row">
-    <div class="col-xs-5 col-xs-offset-3">
-      <h1 style="margin-top:1.5em; margin-bottom:1.5em;">Videos Availables</h1>
-    </div>
-    <div class="admin-home-options  col-xs-offset-10">
-      <p> Admin Options</p><hr>
-      <%= link_to "Inactive Videos", videos_inactives_path, class:"border-bottom: thin solid;" %> <br><hr>
-      <%= link_to "Create Video",new_video_path,class:"border-bottom: thin solid black;" %><hr>
-    </div>
+    <h1>Videos Availables</h1>
   </div>
   <div class="panel-group">
-    <div class="panel-default" style="background-color:none;">
+    <div class="panel-default">
       <div class="panel-body">
         <div class="paginate m-b-1">
-          <%= will_paginate @videos %>
+          <%= will_paginate @videos if @videos.present?%>
         </div>
         <% @videos.each do |v| %>
           <div class="row">
@@ -45,5 +37,5 @@
       </div>
     </div>
   </div>
-  <%= will_paginate @videos %>
+  <%= will_paginate @videos if @videos.present? %>
 </div>

@@ -1,33 +1,42 @@
 <div class="nabvar-component">
   <nav class="navbar navbar-toggleable-md navbar-light">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <%= link_to " Pay-Watch", root_path, class:"navbar-brand mr-4 fa fa-eye" %>
+
+    <div class="Logo">
+      <%= link_to "Pay-Watch", root_path, class:"navbar-brand mr-4 fa fa-eye" %>
+    </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+      <ul id="nav" class="navbar-nav drop-menu">
         <li class="nav-item active">
           <i class="fa fa-home" aria-hidden="true"></i>
-          <%= link_to "Home", root_path, class:"navbar-text " %>
+          <%= link_to "Home", root_path, class:"navbar-text" %>
         </li>
-      </ul>
 
-      <% if session[:user_id] == nil %>
-        <li>
-          <i class="fa fa-sign-in" id="basic-addon1"></i>
-          <%= (link_to "Sign up", new_user_path, class:"navbar-text mr-4")  %>
-        </li>
-        <li>
-          <i class="fa fa-user" id="basic-addon1"></i>
-          <%= (link_to "Login", new_session_path, class:"navbar-text mr-4") %>
-        </li>
-      <% else %>
-        <li class="navbar-text mr-4">Signed in as <strong><em>
-          <%= (link_to session[:user_name], user_path(current_user), class:"nav-item")%></em></strong></li>
-        <li> <i class="fa fa-sign-out" aria-hidden="true"></i>
-          <%= (link_to "Logout", logout_path, method: "delete", class:"navbar-text mr-4")%>
-        </li>
+        <% if session[:user_id] == nil %>
+          <li>
+            <i class="fa fa-sign-in" id="basic-addon1"></i>
+            <%= (link_to "Sign up", new_user_path, class:"navbar-text mr-4")  %>
+          </li>
+          <li>
+            <i class="fa fa-user" id="basic-addon1"></i>
+            <%= (link_to "Login", new_session_path, class:"navbar-text mr-4") %>
+          </li>
+        <% else %>
+          <% if is_admin?%>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Options</a>
+              <ul id="admin-menu" class="clearfix" role="menu">
+                <li><%= link_to "Inactive Videos", videos_inactives_path, class:"border-bottom: thin solid;" %></li><hr>
+                <li><%= link_to "Create Video",new_video_path,class:"border-bottom: thin solid black;" %></li><hr>
+              </ul>
+            </li>
+          <% end %>
+          <li class="navbar-text mr-4">Signed in as <strong><em>
+            <%= (link_to session[:user_name], user_path(current_user), class:"nav-item")%></em></strong></li>
+          <li>
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+            <%= (link_to "Logout", logout_path, method: "delete", class:"navbar-text mr-4")%>
+          </li>
+      </ul>
       <% end %>
     </div>
   </nav>

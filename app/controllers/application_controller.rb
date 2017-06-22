@@ -17,18 +17,12 @@ class ApplicationController < ActionController::Base
 
   # Validates if current_user has admin privileges
   def isAdmin?
-
-    unless logged_in?
-      redirect_to new_session_path, flash: {:error => "Warning! Only Admin privileges"}
-    else
-      !!@current_user.admin
-    end
+    redirect_to new_session_path, flash: {:error => "Warning! Only Admin privileges"} unless logged_in? 
+    !!@current_user.admin
   end
 
   # Validates if not an admin user then redirects to the home page. (root path)
   def authorize_admin
-    unless isAdmin?
-      redirect_to root_path, flash: {:error => "User don't have admin privileges"}
-    end
+    redirect_to root_path, flash: {:error => "User don't have admin privileges"} unless isAdmin?
   end
 end

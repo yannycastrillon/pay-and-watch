@@ -14,14 +14,6 @@
  *= require_self
  */
 
-/*
-  .container-fluid{
-  background: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.8)), url("https://keep.google.com/media/1oMUucflIZzdzNBWXuFqkpvTTD9-Ipf8?accept=image/gif,image/jpeg,image/jpg,image/png,image/webp,audio/aac&sz=w1233-h675") no-repeat center center fixed;
-  background-color: #f4f4f4;
-
-}*/
-
-
 
 #navbarSupportedContent li{
   list-style-type: none;
