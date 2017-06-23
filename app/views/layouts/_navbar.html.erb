@@ -2,39 +2,36 @@
   <nav class="navbar navbar-toggleable-md navbar-light">
 
     <div class="Logo">
-      <%= link_to "Pay-Watch", root_path, class:"navbar-brand mr-4 fa fa-eye" %>
+      <%= link_to " Pay-Watch", root_path, class:"fa fa-eye navbar-brand " %>
     </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul id="nav" class="navbar-nav drop-menu">
         <li class="nav-item active">
-          <i class="fa fa-home" aria-hidden="true"></i>
-          <%= link_to "Home", root_path, class:"navbar-text" %>
+          <%= link_to " Home", root_path, :class => "fa fa-home navbar-text" %>
         </li>
 
         <% if session[:user_id] == nil %>
           <li>
-            <i class="fa fa-sign-in" id="basic-addon1"></i>
-            <%= (link_to "Sign up", new_user_path, class:"navbar-text mr-4")  %>
+            <%= link_to " Sign up", new_user_path, class:"fa fa-sign-in navbar-text" %>
           </li>
           <li>
-            <i class="fa fa-user" id="basic-addon1"></i>
-            <%= (link_to "Login", new_session_path, class:"navbar-text mr-4") %>
+            <%= link_to "Login", new_session_path, class:"fa fa-user navbar-text" %>
           </li>
         <% else %>
           <% if is_admin?%>
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Options</a>
+            <li class="dropdown"><a href="#" class=" fa fa-user dropdown-toggle" data-toggle="dropdown"> Admin Options</a>
               <ul id="admin-menu" class="clearfix" role="menu">
-                <li><%= link_to "Inactive Videos", videos_inactives_path, class:"border-bottom: thin solid;" %></li><hr>
-                <li><%= link_to "Create Video",new_video_path,class:"border-bottom: thin solid black;" %></li><hr>
+                <li><%= link_to " Inactive Videos", videos_inactives_path, class:"fa fa-minus" %></li><hr>
+                <li><%= link_to " Create Video", new_video_path,class:" fa fa-plus" %></li><hr>
               </ul>
             </li>
           <% end %>
-          <li class="navbar-text mr-4">Signed in as <strong><em>
-            <%= (link_to session[:user_name], user_path(current_user), class:"nav-item")%></em></strong></li>
           <li>
-            <i class="fa fa-sign-out" aria-hidden="true"></i>
-            <%= (link_to "Logout", logout_path, method: "delete", class:"navbar-text mr-4")%>
+            <b><em><%= link_to 'Signed in as: '+current_user.username, user_path(current_user), class:"navbar-text"%></em></b>
+          </li>
+          <li>
+            <%= link_to " Logout", logout_path, method: "delete", class:" fa fa-sign-out navbar-text"%>
           </li>
       </ul>
       <% end %>
