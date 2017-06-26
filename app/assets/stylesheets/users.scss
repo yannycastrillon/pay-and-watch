@@ -1,12 +1,33 @@
 @import "config";
 
+.request-component {
+
+}
+
+.profile-component {
+  background: $GRAY_BG_COMPONENT;
+  h2 {
+    color: $GRAY_H2;
+  }
+  h4 {
+    font-family: $FONT_H4_PROFILE;
+    margin: 0.2em 1.5em;
+    color: $GRAYLIGHT_H4_PROFILE;
+  }
+
+  .profile-links a{
+    margin: 0.7em 0 1em 3em;
+  }
+}
+
+
 .sigin-component {
   width: 350px;
   height: auto;
   padding: 2em 3em;
   margin: 2em auto;
   background: $GRAY_BG_COMPONENT;
-  border: thin gray dashed;
+  border: thin $GRAY_BG_COMPONENT dashed;
   text-align: center;
 
   label {

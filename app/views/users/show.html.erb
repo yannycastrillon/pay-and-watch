@@ -27,7 +27,7 @@
             <!-- Sends a PATCH request with data on params to update and approve request -->
             <td> <%= button_to "Approve", update_user_request_path(
             user_id:r.user_id,
-            request:{
+            request: {
               req_id:r.id, # actual request id
               curr_st:r.acc_curr_st_id, # current state account
               chg_to:r.acc_chgTo_st_id # change state to account
@@ -39,59 +39,57 @@
 
     </div>
   </div>
-  <br>
 <% end %>
 
 <!-- Middle section -->
-<div class="row">
-  <h1 style="margin-top:1.5em;">Profile Details</h1>
-</div>
-<div class="row m-t-3 border">
-  <div class="col-xs-offset-1 col-xs-5">
-    <img class="img-fluid img-circle" src="http://placehold.it/350x150">
-  </div>
-  <div class="col-xs-2 text-left">
-    <h4><strong> Full Name: </strong> </h4>
-    <h4><strong> Age: </strong> </h4>
-    <h4><strong> Username: </strong> </h4>
-    <h4><strong> Email: </strong> </h4>
-    <h4><strong> Account:</strong> </h4>
-  </div>
-  <div class="col-xs-4 text-left">
-    <h4><%= @user.name %></h4>
-    <h4><%= @user.age.to_s %></h4>
-    <h4><%= @user.username %></h4>
-    <h4><%= @user.email %></h4>
-    <h4><%= @user.active ? "Active" : "Inactive"%></h4>
-  </div>
-</div>
-<div class="row">
-  <%= link_to "Edit Profile", edit_user_path(@user), class:"col-xs-offset-3 pull-left", style:"margin-left: 255px;" %>
-  <%= link_to "Inactive account", users_requests_path(@user, acc_chgTo_st:3, user_active:@user.active), data: {confirm: "Are you sure?", method:"POST"} %>
-</div>
-<hr>
-<!-- List videos of each User-->
-<div class="row m-y-2 text-warning">
-  <h1>List of Videos</h1>
-</div>
-<div class="row">
-  <% @user.videos.each do |v| %>
-  <div class="col-md-6 col-lg-4">
-    <div class="card">
-      <img class="card-img-top img-fluid" src="http://placehold.it/350x150">
-      <div class="card-block">
-        <div class="card-title"> <%= v.name %> - <%= v.active %> </div>
-        <button type="button" data-toggle="collapse" data-target="#demo<%=v.id%>" class="btn btn-info"> Description </button>
-        <div id="demo<%=v.id%>" class="collapse">
-          <%= v.description %>
-          <%= link_to "Video", href:v.url %>
-        </div>
-          <%= v.active ? "<div class='text-success'>Active</div>".html_safe : "<div class='text-danger'>Inactive</div>".html_safe%>
-      </div>
-      <div class="card-footer text-muted">
-        Cost: $<%= v.price %>0
-      </div>
+<div class="profile-component">
+  <h2>Profile Details</h2>
+  <div class="row">
+      <img class="img-fluid img-circle rounded" src="http://placehold.it/350x150">
+    <div class="col-xs-2">
+      <h4> Full Name:  </h4>
+      <h4> Age:  </h4>
+      <h4> Username:  </h4>
+      <h4> Email:  </h4>
+      <h4> Account: </h4>
+    </div>
+    <div class="col-xs-3 ">
+      <h4><%= @user.name %></h4>
+      <h4><%= @user.age.to_s %></h4>
+      <h4><%= @user.username %></h4>
+      <h4><%= @user.email %></h4>
+      <h4><%= @user.active ? "Active" : "Inactive"%></h4>
     </div>
   </div>
- <%end%>
+
+  <div class="row profile-links">
+    <%= link_to "Edit Profile", edit_user_path(@user) %>
+    <%= link_to "Inactive account", users_requests_path(@user, acc_chgTo_st:3, user_active:@user.active), data: {confirm: "Are you sure?", method:"POST"} %>
+  </div>
+  <hr>
+  <!-- List videos of each User-->
+  <div class="profile-videos">
+    <h2>List of Videos</h2>
+    <div class="row">
+      <% @user.videos.each do |v| %>
+      <div class="col-md-6 col-lg-4">
+        <div class="card">
+          <img class="card-img-top img-fluid" src="http://placehold.it/350x150">
+          <div class="card-block">
+            <div class="card-title"> <%= v.name %> - <%= v.active %> </div>
+            <button type="button" data-toggle="collapse" data-target="#demo<%=v.id%>" class="btn btn-info"> Description </button>
+            <div id="demo<%=v.id%>" class="collapse">
+              <%= v.description %>
+              <%= link_to "Video", href:v.url %>
+            </div>
+              <%= v.active ? "<div class='text-success'>Active</div>".html_safe : "<div class='text-danger'>Inactive</div>".html_safe%>
+          </div>
+          <div class="card-footer text-muted">
+            Cost: $<%= v.price %>0
+          </div>
+        </div>
+      </div>
+     <%end%>
+    </div>
+  </div>
 </div>

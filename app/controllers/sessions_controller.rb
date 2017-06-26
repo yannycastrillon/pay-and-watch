@@ -27,8 +27,9 @@ class SessionsController < ApplicationController
 
   # Session Id sets to nil
   def destroy
+    name = session[:user_name]
     session[:user_id] = nil
     session[:user_name] = nil
-    redirect_to root_path
+    redirect_to root_path, flash:{success: "#{name.upcase.split(' ').first} was logout successfully!"}
   end
 end

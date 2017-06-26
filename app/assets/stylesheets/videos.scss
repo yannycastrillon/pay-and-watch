@@ -1,6 +1,6 @@
 @import "config";
 
-.login-component{
+.login-component, .new-component{
   background: $GRAY_BG_COMPONENT;
   width: 350px;
   height: auto;
@@ -8,13 +8,25 @@
   margin: 2em auto;
   border: thin gray dashed;
 
-  input[class="form-control"] {
-    color:#7B7B7B;
+  input[class="form-control"], textarea[class="form-control"] {
+    background-color: #f9f9f9;
+  }
+  form[id="new_video"] input[type="submit"] {
+    margin: 1em auto 0 auto;
+    width: 90%;
+    display: block;
+    border: 0.1em solid $GRAY_H2
   }
 
   h2 {
     color: $GRAY_H2;
     font-size: 2em;
     font-family: sans-serif;
+    border-bottom: 0.1em solid $GRAY_H2;
+    padding-bottom: 0.2em;
+    margin-bottom: 0.7em
+  }
+  label {
+    color:#ffffff;
   }
 }
