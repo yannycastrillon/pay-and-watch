@@ -39,6 +39,10 @@
         <%= f.password_field :password_confirmation , class:"col-md-5 form-control", placeholder:"Password Confirmation" %>
       </div>
     </div>
+    <div class="form-group">
+      <%= f.label :profile_photo, "Update Profile Photo:",class:"control-label" %>
+      <%= f.file_field :profile_photo %>
+    </div>
     <br>
     <div class="form-group">
       <%= f.submit "Update Account", class:"col-md-offset-4 col-md-3 btn btn-primary " %>

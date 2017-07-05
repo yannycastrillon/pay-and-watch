@@ -3,6 +3,14 @@ ruby '2.3.1'
 
 gem 'rubocop', '~> 0.48.0'
 
+# upload files and images
+gem 'paperclip', '~> 5.0.0.beta1'
+
+# Cross Origin Resource Sharing - Enables browser-based application and mobile app to request info from the API
+gem 'rack-cors'
+# Amazon web services
+gem 'aws-sdk', '~> 2'
+# Lets you controll the pagination of a list of items
 gem 'will_paginate'
 # Haml is a templating engine for HTML.
 gem 'haml', '~> 4.0.5'

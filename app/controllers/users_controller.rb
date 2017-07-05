@@ -81,6 +81,6 @@ class UsersController < ApplicationController
   # It will only permit those parameters to come from the view
   def secure_params
     # If pass_confirm is different from "" otherwise don't send them on secure_params method
-      params.require(:user).permit(:name,:email,:age,:username,:password,:password_confirmation)
+      params.require(:user).permit(:name,:email,:age,:username,:password,:password_confirmation, :profile_photo)
   end
 end
