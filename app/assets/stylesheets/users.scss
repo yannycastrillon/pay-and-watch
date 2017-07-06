@@ -8,6 +8,8 @@
   background: $GRAY_BG_COMPONENT;
   h2 {
     color: $GRAY_H2;
+    padding: 0.5em;
+    margin: 1em auto;
   }
   h4 {
     font-family: $FONT_H4_PROFILE;
@@ -15,8 +17,14 @@
     color: $GRAYLIGHT_H4_PROFILE;
   }
 
+  .image-profile {
+    margin: auto;
+  }
+  .user-info {
+    margin: 1em auto;
+  }
   .profile-links a{
-    margin: 0.7em 0 1em 3em;
+    margin: 1em 2em;
   }
 }
 

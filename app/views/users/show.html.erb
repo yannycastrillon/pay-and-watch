@@ -44,28 +44,33 @@
 <!-- Middle section -->
 <div class="profile-component">
   <h2>Profile Details</h2>
-  <div class="row">
-    <%= image_tag @user.profile_photo.url(:medium), class:"img-fluid img-circle rounded" %>
-    <div class="col-xs-2">
-      <h4> Full Name:  </h4>
-      <h4> Age:  </h4>
-      <h4> Username:  </h4>
-      <h4> Email:  </h4>
-      <h4> Account: </h4>
+  <div class="row" style="margin:auto;">
+    <div class=" image-profile">
+      <%= image_tag @user.profile_photo.url(:medium), class:"img-fluid img-circle rounded" %>
+      <div class="row profile-links">
+        <%= link_to "Edit Profile", edit_user_path(@user) %>
+        <%= link_to "Inactive account", users_requests_path(@user, acc_chgTo_st:3, user_active:@user.active), data: {confirm: "Are you sure?", method:"POST"} %>
+      </div>
     </div>
-    <div class="col-xs-3 ">
-      <h4><%= @user.name %></h4>
-      <h4><%= @user.age.to_s %></h4>
-      <h4><%= @user.username %></h4>
-      <h4><%= @user.email %></h4>
-      <h4><%= @user.active ? "Active" : "Inactive"%></h4>
+    <div class="row user-info">
+      <div class="col-xs-3">
+        <h4> Full Name:  </h4>
+        <h4> Age:  </h4>
+        <h4> Username:  </h4>
+        <h4> Email:  </h4>
+        <h4> Account: </h4>
+      </div>
+      <div class="col-xs-3 ">
+        <h4><%= @user.name %></h4>
+        <h4><%= @user.age.to_s %></h4>
+        <h4><%= @user.username %></h4>
+        <h4><%= @user.email %></h4>
+        <h4><%= @user.active ? "Active" : "Inactive"%></h4>
+      </div>
     </div>
   </div>
 
-  <div class="row profile-links">
-    <%= link_to "Edit Profile", edit_user_path(@user) %>
-    <%= link_to "Inactive account", users_requests_path(@user, acc_chgTo_st:3, user_active:@user.active), data: {confirm: "Are you sure?", method:"POST"} %>
-  </div>
+
   <hr>
   <!-- List videos of each User-->
   <div class="profile-videos">
