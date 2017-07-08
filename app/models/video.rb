@@ -17,8 +17,5 @@ class Video < ActiveRecord::Base
   def activate_video
     self.active = true
     self.save!
-    { success: "Video was successfully activate!" }
-  rescue StandardError => e
-    { error: "Video was not able to be activate! #{e.message}" }
   end
 end

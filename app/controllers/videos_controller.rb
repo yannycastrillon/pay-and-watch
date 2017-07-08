@@ -1,13 +1,13 @@
 class VideosController < ApplicationController
   # This is like the middleware which gets executed before any action of the controller
-  before_action :current_user, :authorize_admin, only: [:new,:create,:edit,:update,:destroy,:inactive_videos]
-  before_action :set_video, except: [:index,:new,:create,:inactive_videos,:activate]
+  before_action :current_user, :authorize_admin, only: [:new,:create,:edit,:update,:destroy,:inactives]
+  before_action :set_video, except: [:index,:new,:create,:inactives,:activates]
 
   @@VIDEOS_PER_PAGE = 6
 
   # Home page - All videos that are currently active appear in the home.
   def index
-    @videos = Video.actives.order_by_id.paginate(page:params[:page], :per_page => @@VIDEOS_PER_PAGE)
+    @videos = Video.actives.order_by_id.paginate(page: params[:page], per_page: @@VIDEOS_PER_PAGE)
   end
 
   # Video description and Information
@@ -55,14 +55,20 @@ class VideosController < ApplicationController
   end
 
   # List all the inactive videos
-  def inactive_videos
+  def inactives
     @inactive_videos = Video.inactives.order_by_id
-    render partial: "inactive_videos"
+    render partial: "inactives"
   end
 
   # Activates video
-  def activate
-    msg = Video.find(params[:id]).activate_video
+  def activates
+    videos_to_activate = params[:data][:commands]
+    begin
+      videos_to_activate.map { |id| Video.find(id).activate_video }
+      msg = { success: "Videos were successfully activate!" }
+    rescue StandardError => e
+      msg = { error: "Videos were not able to be activate! #{e.message}" }
+    end
     redirect_to root_path, flash: msg
   end
 

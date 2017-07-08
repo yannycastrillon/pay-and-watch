@@ -1,3 +1,5 @@
+// Lets preview the uploading image into the page.
+
 $(function(){
   $('#user_profile_photo').on('change', function(event){
     let files = event.target.files;
