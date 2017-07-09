@@ -1,41 +1,34 @@
-<div class="main-component">
+<div class="home-component">
   <div class="row">
     <h1>Videos Availables</h1>
-  </div>
-  <div class="paginate m-b-1">
-    <%= will_paginate @videos if @videos.present?%>
-  </div>
-  <% @videos.each do |v| %>
-    <div class="row videos-list">
-      <div class="col-xs-12 col-sm-4 col-lg-3">
-        <div class="row">
-          <div class="col-xs-4 col-sm-12">
-            <%= link_to video_path(v) do %>
-            <%= image_tag "video-300x300.png", size:"300x300#",alt:"Video image" %>
-            <% end %>
-          </div>
-          <div class="col-xs-8 col-sm-12">
-            <%= link_to video_path(v) do %>
-              <div class="col-name">
-                <button type="button" data-toggle="collapse" data-target="#demo<%=v.id%>" class="btn btn-info"> <%= v.name %> </button>
-                <div id="demo<%=v.id%>" class="collapse">
-                  <%= v.description %>
-                  <%= link_to "Video", href:v.url %>
-                  <p> <%= v.price %> </p>
-                </div>
-              </div>
-              <div class="col-links">
-                <!-- Sends on the URL the "v_id" which is the id of the video -->
-                <%= link_to "Buy", new_payment_path(v_id:v.id) %>
-                <%= link_to "Show", video_path(v) %>
-                <%= link_to "Edit",edit_video_path(v) %>
-                <%= link_to "Inactivate",video_path(v), :confirm => "Are you sure you want to delete?",method: :delete %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
+    <div class="paginate m-b-1">
+      <%= will_paginate @videos if @videos.present?%>
     </div>
-  <%end%>
+  </div>
+  <div class="row videos-list">
+    <% @videos.each do |v| %>
+      <div class="col-xs-12 col-sm-6 col-lg-4">
+        <%= image_tag "video-300x300.png", size:"300x300#", class:"video-image", alt:"Video image", id:v.id  %>
+        <div class="video-options">
+          <%= link_to "Buy", new_payment_path(v_id:v.id) %>
+          <%= link_to "Show", video_path(v) %>
+          <%= link_to "Edit",edit_video_path(v) %>
+          <%= link_to "Inactivate",video_path(v), :confirm => "Are you sure you want to delete?",method: :delete %>
+        </div>
+        <%= link_to video_path(v) do %>
+          <div class="col-name">
+            <button type="button" data-toggle="collapse" data-target="#demo<%=v.id%>" class="btn btn-info">
+              <%= v.name %>
+            </button>
+            <div id="demo<%=v.id%>" class="collapse">
+              <%= v.description %>
+              <%= link_to "Video", href:v.url %>
+              <p> <%= v.price %> </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
   <%= will_paginate @videos if @videos.present? %>
 </div>

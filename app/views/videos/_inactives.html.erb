@@ -18,7 +18,7 @@
       </div>
     <% end %>
     <div class="">
-      <%= submit_tag 'Activate videos' %>
+      <%= submit_tag 'Activate videos' if @inactive_videos.present?%>
     </div>
   <% end %>
 </div>

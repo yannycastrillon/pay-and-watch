@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   root "videos#index"
-  # get "/videos/inactives" => "videos#inactive_videos"
   resources :videos do
     # get :activate, :on => :member
     get :inactives, :on => :collection
@@ -9,7 +8,6 @@ Rails.application.routes.draw do
     resources :requests
   end
   resources :payments, only:[:new,:create]
-  # put "/videos/activate" => "videos#activate"
 
 
 #Users###################################################
