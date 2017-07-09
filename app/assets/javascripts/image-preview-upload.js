@@ -19,21 +19,3 @@ $(function(){
     console.log(files);
   })
 })
-
-$(document).ready($(function() {
-	$(".home-component .video-image, .video-options").hover(
-    function(event) {
-      event.target.style.opacity = 0.3
-      let infoLink = $(event.target).siblings().css({opacity:1})
-		  console.log(infoLink);
-    },
-    function (event) {
-      event.target.style.opacity = 1
-      let infoLink = $(event.target).siblings().css({opacity:0})
-
-      console.log(event.target);
-    }
-
-  )
-
-}))

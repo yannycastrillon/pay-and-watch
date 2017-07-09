@@ -7,13 +7,15 @@
   </div>
   <div class="row videos-list">
     <% @videos.each do |v| %>
-      <div class="col-xs-12 col-sm-6 col-lg-4">
-        <%= image_tag "video-300x300.png", size:"300x300#", class:"video-image", alt:"Video image", id:v.id  %>
-        <div class="video-options">
-          <%= link_to "Buy", new_payment_path(v_id:v.id) %>
-          <%= link_to "Show", video_path(v) %>
-          <%= link_to "Edit",edit_video_path(v) %>
-          <%= link_to "Inactivate",video_path(v), :confirm => "Are you sure you want to delete?",method: :delete %>
+      <div class="col-xs-12 col-sm-6 col-lg-4 ">
+        <div class="my-trans">
+          <%= image_tag "video-300x300.png", size:"300x300#", class:"video-image", alt:"Video image", id:v.id  %>
+          <div class="video-options">
+            <%= link_to "Buy", new_payment_path(v_id:v.id) %>
+            <%= link_to "Show", video_path(v) %>
+            <%= link_to "Edit",edit_video_path(v) %>
+            <%= link_to "Inactivate",video_path(v), :confirm => "Are you sure you want to delete?",method: :delete %>
+          </div>
         </div>
         <%= link_to video_path(v) do %>
           <div class="col-name">
