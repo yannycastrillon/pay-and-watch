@@ -12,6 +12,6 @@ module ApplicationHelper
 
   # Be able to use this method as helper on the views.
   def is_admin?
-    !!current_user.admin
+    !!current_user.admin if !!current_user
   end
 end
