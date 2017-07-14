@@ -1,124 +1,71 @@
 
 
-
-<!-- <%= javascript_include_tag "alert" %> -->
-<!-- Details of the video is going to pay -->
-<div class="row">
-  <div class="col-xs-offset-3 col-xs-6 panel-group">
-    <div class="panel panel-info">
-      <div class="panel-heading">
+<div class="payment-component">
+  <!-- <%= javascript_include_tag "alert" %> -->
+  <!-- Details of the video is going to pay -->
+  <div class="row">
+    <div class="col-xs-offset-3 col-xs-6 panel-group">
         <h2>Video details</h2>
-      </div>
-      <div class="panel-body text-left">
-        <p><strong>Video Name:</strong> <span class="pull-right"><%= @video.name %></span></p>
-        <p><strong> Video Url:</strong> <span class="pull-right"><%= @video.url %> </span></p>
-        <p><strong> Price: </strong> <span class="pull-right">$ <%= @video.price %> dollars</span> </p>
-      </div>
+        <div class="panel-body text-left">
+          <p><strong>Video Name:</strong> <span class="pull-right"><%= @video.name %></span></p>
+          <p><strong> Video Url:</strong> <span class="pull-right"><%= @video.url %> </span></p>
+          <p><strong> Price: </strong> <span class="pull-right">$ <%= @video.price %> dollars</span> </p>
+        </div>
     </div>
   </div>
-</div>
-<br><br>
-<div class="row">
-  <div class="col-xs-offset-1 col-xs-10 panel-group">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h2>PAYMENT SECTION</h2>
-      </div>
-      <div class="panel-body">
-        <br>
-        <%= form_for @payment, html: {id: :card_details} do |f| %>
-          <fieldset>
-            <div class="row">
-              <div class="form-group">
-                <%= label_tag :card_holder_name, "Card Holder Name: ", class:"col-xs-3 control-label " %>
-                <div class="col-xs-4">
-                  <%= f.text_field :card_holder_name, placeholder:"Full Name", class:"form-control" %>
-                </div>
-              </div>
-            </div>
-            <br>
-            <div class="row">
-              <div class="form-group">
-                <%= label_tag :card_number, "Card Number: ",
-                class:"col-xs-3 control-label" %>
-                <div class="col-xs-4">
-                  <%= text_field_tag :card_number,"", {placeholder:"xxxxxxxxx", class:"form-control ", "data-stripe"=>"number"} %>
-                </div>
-              </div>
-            </div>
-            <br>
-            <div class="row">
-              <div class="form-group">
-                <%= label_tag :card_expires, "card expires",{class:"col-xs-3 control-label"} %>
-                <div class="col-xs-2">
-                  <%= select_tag :exp_month, options_for_select( Date::MONTHNAMES
-                  .compact.each_with_index.map {|name, i| ["#{i+1} - #{name}", i+1]} ), name:nil ,"data-stripe" => "exp-month" %>
-                </div>
-                <div class="col-xs-2">
-                  <%= select_tag :exp_year, options_for_select((Date.today.year..(Date.today.year+10)).to_a), name:nil, "data-stripe"=>"exp-year" %>
-                </div>
-                <%= label_tag :card_sec_code,"CVV:",{class:"col-xs-2 control-label"} %>
-                <div class="col-xs-2">
-                  <%= text_field_tag :card_sec_code,"",{placeholder:"xxx", name:nil, class:"form-control", "data-stripe"=>"cvv"} %>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="form-group">
-              <%= label_tag :address, "Bill Address: ", class:"col-xs-3 label-control" %>
-              <div class="col-xs-4">
-                <%= f.text_field :address, placeholder:"Full Address",class:"form-control" %>
-              </div>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="form-group">
-              <%= label_tag :city, "City: ", class:"col-xs-3 label-control" %>
-              <div class="col-xs-4">
-                <%= f.text_field :city, placeholder:"City",class:"form-control" %>
-              </div>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="form-group">
-              <%= label_tag :state_province, "State/Province: ", class:"col-xs-3" %>
-              <div class="col-xs-4">
-                <%= f.text_field :state_province, placeholder:"State or Province",class:"form-control" %>
-              </div>
-              <%= label_tag :postal_code, "Postal Code: ", class:"col-xs-2" %>
-              <div class="col-xs-2">
-                <%= f.number_field :postal_code, placeholder:"xxxxx", class:"form-control" %>
-              </div>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="form-group">
-              <%= label_tag :email, "Email: ", class:"col-xs-3" %>
-              <div class="col-xs-4">
-                <%= f.text_field :email, class:"form-control" %>
-              </div>
-            </div>
-          </div>
-          <br>
-          <%= f.hidden_field :video_id, value:params[:v_id] %>
-          <%= f.hidden_field :stripe_card_token, id:"payment_stripe_card_token"  %>
+  <br><br>
+  <div class="row">
+    <div class="col-xs-10 panel-group">
+      <h2>PAYMENT SECTION</h2>
+      <%= form_for @payment, html: {id: :card_details} do |f| %>
+        <div class="form-group">
+          <%= label_tag :card_holder_name, "Card Holder Name: ", class:" control-label " %>
+          <%= f.text_field :card_holder_name, placeholder:"Full Name", class:"form-control" %>
+        </div>
 
-          <div class="row">
-            <div id="stripe_error">
-              <noscript>Javascript is no enable and is required for this form. First enable it in your web browser settings.</noscript>
-            </div>
+        <%= label_tag :card_number, "Card Number: ", class:"control-label" %>
+        <div class="row form-group">
+          <%= text_field_tag :card_number,"", {placeholder:"xxxxxxxxx", class:"together-left form-control ", "data-stripe"=>"number"} %>
+          <%= text_field_tag :card_sec_code,"",{placeholder:"cvv", name:nil, class:"together-right form-control", "data-stripe"=>"cvv"} %>
+        </div>
+        <div class="form-group">
+          <div class="">
+            <%= label_tag :card_expires, "Card Exp:",{class:"control-label"} %>
           </div>
-          <div class="row">
-            <%= f.submit "Make Payment", class:"col-xs-offset-5 col-xs-2 btn btn-primary m-b-2", data: {behavior: "payment-action"}%>
-          </div>
-          </fieldset>
-        <%end%>
-      </div>
+
+          <%= select_tag :exp_month, options_for_select( Date::MONTHNAMES
+          .compact.each_with_index.map {|name, i| ["#{i+1} - #{name}", i+1]} ), name:nil ,"data-stripe" => "exp-month" %>
+          <%= select_tag :exp_year, options_for_select((Date.today.year..(Date.today.year+10)).to_a), name:nil, "data-stripe"=>"exp-year" %>
+        </div>
+        <div class="form-group">
+          <%= label_tag :address, "Bill Address: ", class:"label-control" %>
+          <%= f.text_field :address, placeholder:"Full Address",class:"form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag :city, "City: ", class:"label-control" %>
+          <%= f.text_field :city, placeholder:"City",class:"form-control" %>
+        </div>
+        <div class="row form-group together">
+          <%= label_tag :state_province, "State/Province: " %>
+          <%= f.text_field :state_province, placeholder:"State or Province",class:"together-left form-control" %>
+          <%= f.number_field :postal_code, placeholder:"Zipcode", class:"together-right form-control" %>
+        </div>
+        <div class="form-group">
+          <%= label_tag :email, "Email: ", class:"" %>
+          <%= f.text_field :email, class:"form-control" %>
+        </div>
+
+        <%= f.hidden_field :video_id, value:params[:v_id] %>
+        <%= f.hidden_field :stripe_card_token, id:"payment_stripe_card_token"  %>
+
+        <div id="stripe_error">
+          <noscript>Javascript is no enable and is required for this form. First enable it in your web browser settings.</noscript>
+        </div>
+
+        <%= f.submit "Make Payment", class:"btn btn-primary", data: {behavior: "payment-action"}%>
+
+      <%end%>
     </div>
   </div>
 </div>
