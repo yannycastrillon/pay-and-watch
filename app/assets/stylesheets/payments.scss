@@ -1,4 +1,36 @@
+@import "config";
+
+.payment-video-details {
+  background-color: $GRAY_BG_PAYMENT_DETAILS;
+  padding: 0.3em;
+  margin: 1em;
+  h2 {
+    font-size: 1.5em;
+    margin-left: 0.5em;
+  }
+  .review-details-component {
+    border: 1px solid #E0E0E0;
+    background: #FFFFFF;
+    margin: 0.5em;
+    padding: 1em;
+
+  }
+  .review-details  {
+    .row div {
+      color: #827E7E;
+    }
+    .row .value-price {
+      color: #DC0B13;
+    }
+  }
+}
 .payment-component {
+  width: 400px;
+  input[type="submit"] {
+    background-color: #F97B00;
+    color: #FFFFFF;
+  }
+
   .row  {
     margin: auto;
     .together-left {

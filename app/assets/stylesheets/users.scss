@@ -7,7 +7,7 @@
 .profile-component {
   background: $GRAY_BG_COMPONENT;
   h2 {
-    color: $GRAY_H2;
+    color: $BLACK_H2;
     padding: 0.5em;
     margin: 1em auto;
   }
@@ -30,24 +30,25 @@
 
 
 .sigin-component, .edit-component, .payment-component {
+  background: $GRAY_BG_COMPONENT;
+  border: thin $LIGHTGRAY_BORDER_COMPONENT dashed;
   width: 350px;
   height: auto;
   padding: 2em 3em;
   margin: 2em auto;
-  background: $GRAY_BG_COMPONENT;
-  border: thin $GRAY_BG_COMPONENT dashed;
   text-align: center;
 
   label {
-    color: #D7D8D8;
-    font-size: 1em;
+    color: $BLACK_LABEL_COMPONENT;
     font-family: $FONT_LABEL_FORM;
+    font-size: 1em;
   }
 
   h2 {
+    color: $BLACK_H2;
+    border-bottom: 0.1em solid $BLACK_H2;
     margin-bottom: 1em;
     font-family: sans-serif;
-    color: $GRAY_H2;
   }
 
   input[class="form-control"] {

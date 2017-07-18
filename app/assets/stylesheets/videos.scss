@@ -56,23 +56,20 @@
   height: auto;
   padding: 2em 1em;
   margin: 2em auto;
-  border: thin gray dashed;
+  border: thin lightgray dashed;
 
-  input[class="form-control"], textarea[class="form-control"] {
-    background-color: #f9f9f9;
-  }
   form[id="new_video"] input[type="submit"] {
+    border: 0.1em solid $BLACK_H2;
     margin: 1em auto 0 auto;
     width: 90%;
     display: block;
-    border: 0.1em solid $GRAY_H2
   }
 
   h2 {
-    color: $GRAY_H2;
+    color: $BLACK_H2;
+    border-bottom: 0.1em solid $BLACK_H2;
     font-size: 2em;
     font-family: sans-serif;
-    border-bottom: 0.1em solid $GRAY_H2;
     padding-bottom: 0.2em;
     margin-bottom: 0.7em
   }

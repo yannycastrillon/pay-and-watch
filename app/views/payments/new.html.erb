@@ -1,36 +1,40 @@
 
-
+<div class="payment-video-details">
+  <h2>Video details</h2>
+  <div class="review-details-component">
+    <div class="review-details">
+      <div class="row">
+        <div class="col-xs-6 col-sm-8 tag">Video Name: </div>
+        <div class="col-xs-6 col-sm-4 value"><%= @video.name %></div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-sm-8 tag">Video Url: </div>
+        <div class="col-xs-6 col-sm-4 value"><%= link_to "Watch Video", @video.url%></div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-sm-8 tag">Price:</div>
+        <div class="col-xs-6 col-sm-4 value-price"><%= @video.price %>0</div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="payment-component">
   <!-- <%= javascript_include_tag "alert" %> -->
   <!-- Details of the video is going to pay -->
-  <div class="row">
-    <div class="col-xs-offset-3 col-xs-6 panel-group">
-        <h2>Video details</h2>
-        <div class="panel-body text-left">
-          <p><strong>Video Name:</strong> <span class="pull-right"><%= @video.name %></span></p>
-          <p><strong> Video Url:</strong> <span class="pull-right"><%= @video.url %> </span></p>
-          <p><strong> Price: </strong> <span class="pull-right">$ <%= @video.price %> dollars</span> </p>
-        </div>
-    </div>
-  </div>
-  <br><br>
   <div class="row">
     <div class="col-xs-10 panel-group">
       <h2>PAYMENT SECTION</h2>
       <%= form_for @payment, html: {id: :card_details} do |f| %>
         <div class="form-group">
-          <%= label_tag :card_holder_name, "Card Holder Name: ", class:" control-label " %>
           <%= f.text_field :card_holder_name, placeholder:"Full Name", class:"form-control" %>
         </div>
 
-        <%= label_tag :card_number, "Card Number: ", class:"control-label" %>
         <div class="row form-group">
           <%= text_field_tag :card_number,"", {placeholder:"xxxxxxxxx", class:"together-left form-control ", "data-stripe"=>"number"} %>
           <%= text_field_tag :card_sec_code,"",{placeholder:"cvv", name:nil, class:"together-right form-control", "data-stripe"=>"cvv"} %>
         </div>
         <div class="form-group">
           <div class="">
-            <%= label_tag :card_expires, "Card Exp:",{class:"control-label"} %>
           </div>
 
           <%= select_tag :exp_month, options_for_select( Date::MONTHNAMES
@@ -38,21 +42,17 @@
           <%= select_tag :exp_year, options_for_select((Date.today.year..(Date.today.year+10)).to_a), name:nil, "data-stripe"=>"exp-year" %>
         </div>
         <div class="form-group">
-          <%= label_tag :address, "Bill Address: ", class:"label-control" %>
           <%= f.text_field :address, placeholder:"Full Address",class:"form-control" %>
         </div>
 
         <div class="form-group">
-          <%= label_tag :city, "City: ", class:"label-control" %>
           <%= f.text_field :city, placeholder:"City",class:"form-control" %>
         </div>
         <div class="row form-group together">
-          <%= label_tag :state_province, "State/Province: " %>
           <%= f.text_field :state_province, placeholder:"State or Province",class:"together-left form-control" %>
           <%= f.number_field :postal_code, placeholder:"Zipcode", class:"together-right form-control" %>
         </div>
         <div class="form-group">
-          <%= label_tag :email, "Email: ", class:"" %>
           <%= f.text_field :email, class:"form-control" %>
         </div>
 
@@ -63,7 +63,7 @@
           <noscript>Javascript is no enable and is required for this form. First enable it in your web browser settings.</noscript>
         </div>
 
-        <%= f.submit "Make Payment", class:"btn btn-primary", data: {behavior: "payment-action"}%>
+        <%= f.submit "Make Payment", class:"btn", data: {behavior: "payment-action"}%>
 
       <%end%>
     </div>
